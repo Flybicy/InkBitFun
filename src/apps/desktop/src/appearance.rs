@@ -1275,9 +1275,10 @@ mod development_frontend_tests {
 
 #[cfg(test)]
 mod window_material_tests {
-    use super::{windows_build_supports_material, WINDOWS_11_BUILD_NUMBER};
+    use super::{supports_native_window_material, windows_build_supports_material, WINDOWS_11_BUILD_NUMBER};
+    // The registry reader only exists on Windows, so the wrapper must import it per target.
     #[cfg(target_os = "windows")]
-    use super::{supports_native_window_material, windows_build_number};
+    use super::windows_build_number;
 
     #[test]
     fn windows_10_builds_lose_the_native_window_material() {
