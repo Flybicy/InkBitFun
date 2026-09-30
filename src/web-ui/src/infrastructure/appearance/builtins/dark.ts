@@ -23,18 +23,18 @@ import {
 const DARK_BACKGROUND_PRIMARY = getDesignSystemThemeString('dark', 'color.surface.canvas');
 const DARK_BACKGROUND_SECONDARY = getDesignSystemThemeString('dark', 'color.surface.panel');
 const DARK_TEXT_PRIMARY = getDesignSystemThemeString('dark', 'color.content.primary');
-const DARK_BUTTON_TEXT = '#c8c8c8';
+const DARK_BUTTON_TEXT = getDesignSystemThemeString('dark', 'color.action.primary.content');
 const DARK_ACCENT = getDesignSystemThemeString('dark', 'color.accent.default');
 const DARK_ACCENT_HOVER = getDesignSystemThemeString('dark', 'color.accent.hover');
-const DARK_PURPLE = '#8b5cf6';
-const DARK_PURPLE_HOVER = '#7c3aed';
+const DARK_PURPLE = '#8275A0';
+const DARK_PURPLE_HOVER = '#5F547C';
 
 export const openBitFunDarkPalette: AppearancePalette = {
 
   id: 'openbitfun-dark',
   name: 'Dark',
   type: 'dark',
-  description: 'Default dark appearance',
+  description: 'Dark appearance - 书墨印章 night: warm ink surfaces, seal-blue accents',
   author: 'OpenBitFun Team',
   version: '2.1.0',
 
@@ -157,7 +157,7 @@ export const openBitFunDarkPalette: AppearancePalette = {
 
       ghost: {
         default: {
-          color: '#9a9a9a',
+          color: '#8F7F6C',
         },
         hover: {
           background: overlayWhite(0.1),

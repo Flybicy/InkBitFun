@@ -1,0 +1,100 @@
+/*
+ * OpenBitFun ink/seal (shu mo yin zhang / book-ink-seal) surface language.
+ *
+ * The design-token layer owns the type, radius, and border scales and is
+ * contract-locked, so this file never edits their sources. It projects the ink
+ * aesthetic through the cascade's last layer, openbitfun.overrides, which
+ * design-tokens/dist/tokens.css declares after openbitfun.components.
+ *
+ * Three deliberate moves, all derived from existing tokens rather than raw
+ * literals so the colour governance audit keeps passing:
+ *   1. a serif display stack for headings and display sizes,
+ *   2. a squarer radius scale (the reference aesthetic runs 2/3/4px corners),
+ *   3. a paper-fibre wash on the app canvas.
+ */
+
+@layer openbitfun.overrides {
+  :where([data-openbitfun-design-system-root]),
+  :where([data-openbitfun-design-system-root][data-color-scheme="dark"]) {
+    /*
+     * The serif display face. The design system ships no serif profile, so the
+     * stack itself is declared once in the build-owned font-profile root
+     * (src/web-ui/src/font-profiles/ink-seal-serif.css) and is aliased here into
+     * a private token: every consumer below then reads a canonical
+     * var(--_...) reference instead of repeating the foundation stack.
+     */
+    /* typography-audit: allow -- the ink/seal display face is the design system's only serif role and has no semantic --openbitfun-type-* ancestor. */
+    --_ink-seal-display: var(--openbitfun-font-family-display);
+
+    --openbitfun-type-display-sm-font-family: var(--_ink-seal-display);
+    --openbitfun-type-display-md-font-family: var(--_ink-seal-display);
+    --openbitfun-type-display-lg-font-family: var(--_ink-seal-display);
+    --openbitfun-type-display-xl-font-family: var(--_ink-seal-display);
+    --openbitfun-type-display-xxl-font-family: var(--_ink-seal-display);
+    --openbitfun-type-display-fluid-title-font-family: var(--_ink-seal-display);
+    --openbitfun-type-display-fluid-hero-font-family: var(--_ink-seal-display);
+    --openbitfun-type-heading-display-font-family: var(--_ink-seal-display);
+    --openbitfun-type-heading-page-font-family: var(--_ink-seal-display);
+    --openbitfun-type-heading-section-font-family: var(--_ink-seal-display);
+    --openbitfun-type-heading-panel-font-family: var(--_ink-seal-display);
+    --openbitfun-type-heading-dialog-font-family: var(--_ink-seal-display);
+    --openbitfun-type-heading-welcome-font-family: var(--_ink-seal-display);
+    --openbitfun-type-heading-navigation-font-family: var(--_ink-seal-display);
+
+    /*
+     * Squarer corners. The scale halves toward the 2/3/4px ink language; pill
+     * radii keep their fully round role. Component tokens that reference these
+     * resolve lazily, so the derived surfaces follow.
+     */
+    --openbitfun-radius-xs: 2px;
+    --openbitfun-radius-sm: 3px;
+    --openbitfun-radius-base: 4px;
+    --openbitfun-radius-md: var(--openbitfun-radius-base);
+    --openbitfun-radius-lg: 6px;
+    --openbitfun-radius-xl: 8px;
+    --openbitfun-radius-2xl: 10px;
+    --openbitfun-radius-3xl: 12px;
+    --openbitfun-radius-4xl: 16px;
+
+    /*
+     * Controls that read the pill token directly — Button, segmented control,
+     * status pill, tab group, scrollbar — take the same ink corners instead of
+     * the macOS-SaaS pill. Avatars and circular indicators keep their own
+     * geometry because they never resolve through this token.
+     */
+    --openbitfun-radius-pill: var(--openbitfun-radius-base);
+
+    /* Surfaces whose component tokens hardcode the old rounded scale. */
+    --openbitfun-overlay-dialog-surface-radius: 12px;
+    --openbitfun-layout-card-radius-lg: 12px;
+    --openbitfun-layout-split-view-content-panel-radius: 12px;
+  }
+
+  /*
+   * Paper fibre. Two broad washes plus a faint vertical weave, all mixed down
+   * from the ink and border tokens so no raw colour enters the product layer.
+   * Component surfaces stay opaque, so the weave reads through the gaps.
+   */
+  body {
+    background-color: var(--openbitfun-color-surface-canvas);
+    background-image:
+      radial-gradient(
+        120% 90% at 12% 0%,
+        color-mix(in srgb, var(--openbitfun-color-accent-secondary-surface) 55%, transparent) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        90% 70% at 88% 100%,
+        color-mix(in srgb, var(--openbitfun-color-action-quiet-hover) 70%, transparent) 0%,
+        transparent 55%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in srgb, var(--openbitfun-color-border-default) 45%, transparent) 0px,
+        color-mix(in srgb, var(--openbitfun-color-border-default) 45%, transparent) 1px,
+        transparent 1px,
+        transparent 5px
+      );
+    background-attachment: fixed;
+  }
+}

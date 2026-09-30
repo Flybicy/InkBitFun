@@ -25,8 +25,8 @@ const LIGHT_TEXT_SECONDARY = getDesignSystemThemeString('light', 'color.content.
 const LIGHT_TEXT_MUTED = getDesignSystemThemeString('light', 'color.content.muted');
 const LIGHT_TEXT_DISABLED = getDesignSystemThemeString('light', 'color.content.disabled');
 const LIGHT_NAVY_HOVER = getDesignSystemThemeString('light', 'color.action.primary.hover');
-const LIGHT_PURPLE = '#7c6b99';
-const LIGHT_PURPLE_HOVER = '#655680';
+const LIGHT_PURPLE = '#726691';
+const LIGHT_PURPLE_HOVER = '#5F547C';
 const LIGHT_BACKGROUND_PRIMARY = getDesignSystemThemeString('light', 'color.surface.canvas');
 const LIGHT_SURFACE_CHROME = getDesignSystemThemeString('light', 'color.surface.chrome');
 const LIGHT_SURFACE_SUBTLE = getDesignSystemThemeString('light', 'color.surface.subtle');
@@ -42,7 +42,7 @@ export const openBitFunLightPalette: AppearancePalette = {
   id: 'openbitfun-light',
   name: 'Light',
   type: 'light',
-  description: 'Light appearance - Crisp white surfaces, soft neutral grays, deep navy actions',
+  description: 'Light appearance - 书墨印章: warm xuan-paper surfaces, 墨 ink text, seal-blue accents',
   author: 'OpenBitFun Team',
   version: '2.5.0',
 
@@ -85,7 +85,7 @@ export const openBitFunLightPalette: AppearancePalette = {
 
 
     purple: createSecondaryAccentScale({
-      base: '#6b5a89',
+      base: getDesignSystemThemeString('light', 'color.accent.secondary'),
       hover: LIGHT_PURPLE_HOVER,
       alpha: { 200: 0.14 },
       stops: {
@@ -209,19 +209,19 @@ export const openBitFunLightPalette: AppearancePalette = {
     base: 'vs',
     inherit: true,
     rules: [
-      { token: 'comment', foreground: '9a9a9a', fontStyle: 'italic' },
-      { token: 'keyword', foreground: '6b5a89' },
-      { token: 'string', foreground: '247344' },
-      { token: 'number', foreground: '9a651f' },
-      { token: 'type', foreground: '555555' },
-      { token: 'class', foreground: '555555' },
-      { token: 'function', foreground: '7c6b99' },
-      { token: 'variable', foreground: '555555' },
-      { token: 'constant', foreground: '9a651f' },
-      { token: 'operator', foreground: '6b5a89' },
-      { token: 'tag', foreground: '555555' },
-      { token: 'attribute.name', foreground: '7c6b99' },
-      { token: 'attribute.value', foreground: '247344' },
+      { token: 'comment', foreground: '8F7F6C', fontStyle: 'italic' },
+      { token: 'keyword', foreground: '9A5460' },
+      { token: 'string', foreground: '324C31' },
+      { token: 'number', foreground: '9C7A2F' },
+      { token: 'type', foreground: '5A5249' },
+      { token: 'class', foreground: '5A5249' },
+      { token: 'function', foreground: '8275A0' },
+      { token: 'variable', foreground: '5A5249' },
+      { token: 'constant', foreground: '9C7A2F' },
+      { token: 'operator', foreground: '9A5460' },
+      { token: 'tag', foreground: '5A5249' },
+      { token: 'attribute.name', foreground: '8275A0' },
+      { token: 'attribute.value', foreground: '324C31' },
     ],
     colors: {
       background: STATIC_WHITE,
