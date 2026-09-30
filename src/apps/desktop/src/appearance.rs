@@ -41,6 +41,9 @@ pub(crate) fn supports_native_window_material() -> bool {
     if cfg!(target_os = "macos") {
         return true;
     }
+    // The build-number read is Windows-only, so the call site has to be cfg-gated:
+    // a runtime `cfg!` still compiles the branch on every platform.
+    #[cfg(target_os = "windows")]
     if cfg!(target_os = "windows") {
         return windows_supports_native_window_material();
     }
