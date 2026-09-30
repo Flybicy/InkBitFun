@@ -58,8 +58,8 @@ describe('startup appearance bootstrap manifest', () => {
       bgSecondary: '#262626',
       bgScene: '#ffffff',
       isLight: true,
-      textPrimary: '#f3f3f5',
-      accentColor: '#f3f3f5',
+      textPrimary: '#E9E1D1',
+      accentColor: '#E9E1D1',
     });
   });
 

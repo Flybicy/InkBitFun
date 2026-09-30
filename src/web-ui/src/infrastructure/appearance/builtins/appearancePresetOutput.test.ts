@@ -75,12 +75,12 @@ describe('builtin appearance preset output', () => {
     expect(settings?.tokens['--openbitfun-color-number-badge-background']).toBe(themes.light['color.numberBadge.background']);
     expect(settings?.tokens['--openbitfun-color-key-hint-content']).toBe(themes.light['color.keyHint.content']);
     expect(settings?.tokens['--openbitfun-color-scrollbar-thumb']).toBe(themes.light['color.scrollbar.thumb']);
-    expect(settings?.tokens['--openbitfun-color-field-border']).toBe('rgba(0, 0, 0, 0.08)');
-    expect(settings?.tokens['--openbitfun-color-field-border-hover']).toBe('rgba(0, 0, 0, 0.20)');
-    expect(settings?.tokens['--openbitfun-color-field-border-active']).toBe('rgba(0, 0, 0, 0.20)');
+    expect(settings?.tokens['--openbitfun-color-field-border']).toBe('rgba(42, 38, 34, 0.12)');
+    expect(settings?.tokens['--openbitfun-color-field-border-hover']).toBe('rgba(42, 38, 34, 0.24)');
+    expect(settings?.tokens['--openbitfun-color-field-border-active']).toBe('rgba(42, 38, 34, 0.24)');
     expect(settings?.tokens['--openbitfun-color-field-border-focus']).toBe(themes.light['color.field.borderFocus']);
-    expect(settings?.tokens['--openbitfun-color-field-group-background']).toBe('rgba(0, 0, 0, 0.03)');
-    expect(settings?.tokens['--openbitfun-color-field-placeholder']).toBe('rgba(0, 0, 0, 0.40)');
+    expect(settings?.tokens['--openbitfun-color-field-group-background']).toBe('rgba(42, 38, 34, 0.04)');
+    expect(settings?.tokens['--openbitfun-color-field-placeholder']).toBe('rgba(42, 38, 34, 0.68)');
     for (const palette of builtinAppearancePalettes) {
       if (palette.id === 'openbitfun-light') continue;
       const tokens = getBuiltinAppearanceThemeTokens(palette.id);
@@ -102,10 +102,10 @@ describe('builtin appearance preset output', () => {
       }
     }
     const light = getBuiltinAppearanceThemeTokens('openbitfun-light');
-    expect(light['--openbitfun-component-button-content']).toBe('rgba(0, 0, 0, 0.80)');
-    expect(light['--openbitfun-component-button-text-content']).toBe('#059cb0');
-    expect(light['--openbitfun-color-action-primary-background']).toBe('#101a27');
-    expect(light['--openbitfun-color-action-neutral-content']).toBe('rgba(0, 0, 0, 0.80)');
+    expect(light['--openbitfun-component-button-content']).toBe('rgba(42, 38, 34, 0.90)');
+    expect(light['--openbitfun-component-button-text-content']).toBe('#3F6179');
+    expect(light['--openbitfun-color-action-primary-background']).toBe('#14110E');
+    expect(light['--openbitfun-color-action-neutral-content']).toBe('rgba(42, 38, 34, 0.90)');
   });
 
   it('preserves the action colors of branded presets through the Button contract', () => {
@@ -219,10 +219,11 @@ describe('builtin appearance preset output', () => {
     const serializedAppearances = JSON.stringify(builtinAppearancePalettes).toLowerCase();
     const lightAppearance = builtinAppearancePalettes.find(appearance => appearance.id === 'openbitfun-light');
 
-    expect(lightAppearance?.colors.background.primary).toBe('#fdfdfd');
+    expect(lightAppearance?.colors.background.primary).toBe('#F5EFE4');
     expect(lightAppearance?.monaco?.colors.background).toBe('#ffffff');
-    expect(lightAppearance?.monaco?.colors.lineHighlight).toBe('rgba(16, 26, 39, 0.03)');
-    expect(serializedAppearances.match(/#fdfdfd/g)).toHaveLength(1);
+    expect(lightAppearance?.monaco?.colors.lineHighlight).toBe('rgba(42, 38, 34, 0.04)');
+    // The warm near-neutral backs the xuan-paper canvas and the three primary Button states.
+    expect(serializedAppearances.match(/#f5efe4/g)).toHaveLength(4);
     expect(serializedAppearances).not.toContain('#e2e6eb');
     expect(serializedAppearances).not.toContain('#f0f2f5');
   });
@@ -232,63 +233,63 @@ describe('builtin appearance preset output', () => {
     const tokens = getBuiltinAppearanceThemeTokens('openbitfun-light');
 
     expect(lightAppearance).toMatchObject({
-      description: 'Light appearance - Crisp white surfaces, soft neutral grays, deep navy actions',
+      description: 'Light appearance - 书墨印章: warm xuan-paper surfaces, 墨 ink text, seal-blue accents',
       version: '2.5.0',
       colors: {
         background: {
-          primary: '#fdfdfd',
+          primary: '#F5EFE4',
           secondary: '#ffffff',
-          tertiary: '#f7f7f7',
+          tertiary: '#EFE8DB',
           elevated: '#ffffff',
-          workbench: '#f3f3f5',
+          workbench: '#E9E1D1',
           scene: '#ffffff',
-          chrome: '#f8f8f9',
+          chrome: '#EFE8DB',
         },
         text: {
-          primary: 'rgba(0, 0, 0, 0.80)',
-          secondary: 'rgba(0, 0, 0, 0.60)',
-          muted: '#6a6a6a',
-          disabled: 'rgba(0, 0, 0, 0.30)',
+          primary: 'rgba(42, 38, 34, 0.90)',
+          secondary: 'rgba(42, 38, 34, 0.72)',
+          muted: '#6B6158',
+          disabled: 'rgba(42, 38, 34, 0.32)',
         },
         accent: {
-          50: 'rgba(16, 26, 39, 0.03)',
-          100: '#f3f3f5',
-          500: '#101a27',
-          600: '#1c1c1f',
+          50: 'rgba(42, 38, 34, 0.04)',
+          100: '#E9E1D1',
+          500: '#14110E',
+          600: '#161310',
           700: '#000000',
         },
         semantic: createSemanticColors('light'),
         border: {
-          base: 'rgba(16, 26, 39, 0.15)',
+          base: 'rgba(42, 38, 34, 0.18)',
         },
         element: {
-          subtle: 'rgba(16, 26, 39, 0.03)',
-          soft: '#f3f3f5',
+          subtle: 'rgba(42, 38, 34, 0.04)',
+          soft: '#E9E1D1',
         },
       },
       components: {
         button: {
           primary: {
-            default: { background: '#101a27', color: '#ffffff' },
-            hover: { background: '#1c1c1f', color: '#ffffff' },
-            active: { background: '#000000', color: '#ffffff' },
+            default: { background: '#14110E', color: '#FFFDF8' },
+            hover: { background: '#161310', color: '#FFFDF8' },
+            active: { background: '#000000', color: '#FFFDF8' },
           },
         },
       },
       monaco: {
         colors: {
           background: '#ffffff',
-          lineHighlight: 'rgba(16, 26, 39, 0.03)',
+          lineHighlight: 'rgba(42, 38, 34, 0.04)',
         },
       },
     });
     expect(tokens).toMatchObject({
-      '--openbitfun-color-surface-chrome': '#f8f8f9',
-      '--openbitfun-color-selection-surface': 'rgba(0, 0, 0, 0.08)',
-      '--openbitfun-component-config-page-section-background': '#f7f7f7',
-      '--openbitfun-component-config-page-section-border': 'rgba(16, 26, 39, 0.08)',
+      '--openbitfun-color-surface-chrome': '#EFE8DB',
+      '--openbitfun-color-selection-surface': 'rgba(42, 38, 34, 0.09)',
+      '--openbitfun-component-config-page-section-background': '#EFE8DB',
+      '--openbitfun-component-config-page-section-border': 'rgba(42, 38, 34, 0.10)',
       '--openbitfun-component-config-page-section-border-width': '1px',
-      '--openbitfun-component-config-page-divider': 'rgba(16, 26, 39, 0.08)',
+      '--openbitfun-component-config-page-divider': 'rgba(42, 38, 34, 0.10)',
     });
   });
 
@@ -299,11 +300,11 @@ describe('builtin appearance preset output', () => {
     const tokens = getBuiltinAppearanceThemeTokens('openbitfun-dark');
 
     expect(tokens).toMatchObject({
-      '--openbitfun-color-surface-scene': '#1c1c1f',
-      '--openbitfun-color-surface-tertiary': '#0e0e10',
-      '--openbitfun-color-action-quiet-hover': 'rgba(255, 255, 255, 0.06)',
-      '--openbitfun-color-action-neutral-surface': 'rgba(255, 255, 255, 0.1)',
-      '--openbitfun-component-config-page-row-hover-background': 'rgba(255, 255, 255, 0.1)',
+      '--openbitfun-color-surface-scene': '#161310',
+      '--openbitfun-color-surface-tertiary': '#0D0B09',
+      '--openbitfun-color-action-quiet-hover': 'rgba(240, 232, 216, 0.06)',
+      '--openbitfun-color-action-neutral-surface': 'rgba(240, 232, 216, 0.08)',
+      '--openbitfun-component-config-page-row-hover-background': 'rgba(240, 232, 216, 0.08)',
     });
 
     expect(tokens['--openbitfun-component-config-page-row-hover-background'])
@@ -340,19 +341,19 @@ describe('builtin appearance preset output', () => {
           scene: '#ffffff',
         },
         text: {
-          primary: 'rgba(0, 0, 0, 0.80)',
-          secondary: 'rgba(0, 0, 0, 0.60)',
-          muted: '#6a6a6a',
+          primary: 'rgba(42, 38, 34, 0.90)',
+          secondary: 'rgba(42, 38, 34, 0.72)',
+          muted: '#6B6158',
         },
         border: {
-          subtle: 'rgba(16, 26, 39, 0.08)',
-          base: 'rgba(16, 26, 39, 0.15)',
-          prominent: 'rgba(16, 26, 39, 0.48)',
+          subtle: 'rgba(42, 38, 34, 0.10)',
+          base: 'rgba(42, 38, 34, 0.18)',
+          prominent: 'rgba(20, 17, 14, 0.48)',
         },
         element: {
-          subtle: 'rgba(16, 26, 39, 0.03)',
-          soft: '#f3f3f5',
-          strong: 'rgba(0, 0, 0, 0.10)',
+          subtle: 'rgba(42, 38, 34, 0.04)',
+          soft: '#E9E1D1',
+          strong: 'rgba(42, 38, 34, 0.12)',
         },
         accent: {
           500: '#1c1c1f',
@@ -364,13 +365,13 @@ describe('builtin appearance preset output', () => {
             secondary: '#262626',
           },
           text: {
-            primary: '#f3f3f5',
-            secondary: '#b0b0b0',
-            muted: '#858585',
-            disabled: '#555555',
+            primary: '#E9E1D1',
+            secondary: '#C6BBA7',
+            muted: '#A1927F',
+            disabled: '#3B352F',
           },
           accent: {
-            500: '#f3f3f5',
+            500: '#E9E1D1',
             600: '#ffffff',
           },
         },
@@ -384,35 +385,35 @@ describe('builtin appearance preset output', () => {
         },
         configPage: {
           section: {
-            background: '#f3f3f5',
+            background: '#E9E1D1',
             border: 'transparent',
             borderWidth: '0',
             shadow: 'none',
           },
-          divider: 'rgba(16, 26, 39, 0.08)',
-          rowHover: 'rgba(16, 26, 39, 0.03)',
+          divider: 'rgba(42, 38, 34, 0.10)',
+          rowHover: 'rgba(42, 38, 34, 0.04)',
         },
       },
     });
     expect(tokens).toMatchObject({
       '--openbitfun-color-surface-canvas': '#ffffff',
-      '--openbitfun-color-content-primary': 'rgba(0, 0, 0, 0.80)',
-      '--openbitfun-color-content-secondary': 'rgba(0, 0, 0, 0.60)',
-      '--openbitfun-color-content-disabled': 'rgba(0, 0, 0, 0.30)',
-      '--openbitfun-color-border-subtle': 'rgba(16, 26, 39, 0.08)',
-      '--openbitfun-color-border-default': 'rgba(16, 26, 39, 0.15)',
-      '--openbitfun-color-surface-subtle': 'rgba(16, 26, 39, 0.03)',
-      '--openbitfun-color-action-quiet-hover': '#f3f3f5',
+      '--openbitfun-color-content-primary': 'rgba(42, 38, 34, 0.90)',
+      '--openbitfun-color-content-secondary': 'rgba(42, 38, 34, 0.72)',
+      '--openbitfun-color-content-disabled': 'rgba(42, 38, 34, 0.32)',
+      '--openbitfun-color-border-subtle': 'rgba(42, 38, 34, 0.10)',
+      '--openbitfun-color-border-default': 'rgba(42, 38, 34, 0.18)',
+      '--openbitfun-color-surface-subtle': 'rgba(42, 38, 34, 0.04)',
+      '--openbitfun-color-action-quiet-hover': '#E9E1D1',
       '--openbitfun-color-scrollbar-thumb': 'rgba(0, 0, 0, 0.2)',
-      '--openbitfun-component-config-page-section-background': '#f3f3f5',
+      '--openbitfun-component-config-page-section-background': '#E9E1D1',
       '--openbitfun-component-config-page-section-border': 'transparent',
       '--openbitfun-component-config-page-section-border-width': '0',
       '--openbitfun-component-config-page-section-shadow': 'none',
-      '--openbitfun-component-config-page-divider': 'rgba(16, 26, 39, 0.08)',
+      '--openbitfun-component-config-page-divider': 'rgba(42, 38, 34, 0.10)',
     });
     expect(chromeTokens).toMatchObject({
       '--openbitfun-color-surface-canvas': '#1c1c1f',
-      '--openbitfun-color-content-primary': '#f3f3f5',
+      '--openbitfun-color-content-primary': '#E9E1D1',
       '--openbitfun-color-action-quiet-hover': 'rgba(255, 255, 255, 0.06)',
     });
   });
@@ -450,47 +451,47 @@ describe('builtin appearance preset output', () => {
     }))).toMatchInlineSnapshot(`
       [
         {
-          "hash": "7a71a12624784e4fa3ca06b77e7ad1b8386d28e05e9a478f27fd3e682463a1ca",
+          "hash": "392e37344175f7df0245428ad971d474c85713d4c2ca3fd76d6f1cd344116920",
           "id": "openbitfun-light",
           "type": "light",
         },
         {
-          "hash": "c7d60d578a7e71dbef355a5feb5588437a51d6af30aaca33bb2eb7f07f8e4554",
+          "hash": "12ee30b097c00b45d8a404c088a04839bed388922ce2f8142e3c258f6a7d6058",
           "id": "openbitfun-monochrome",
           "type": "light",
         },
         {
-          "hash": "fdd6c7693b7ad627e9d05842ebaaceaf342bd269d6a0d3a76ac3360b377dc830",
+          "hash": "768cfd458bdfd3c99851f3ae6b95ab002c03a2d8e3916c6d80f60a3c6988199a",
           "id": "openbitfun-slate",
           "type": "dark",
         },
         {
-          "hash": "44d681ba137355f1db61559e01e190cb805b25f1e62fc396e7ebe834a429cf3a",
+          "hash": "05dc43ed85aeb9870b73d87807c3fd209ac1733632287f68bffaf223fc37535e",
           "id": "openbitfun-dark",
           "type": "dark",
         },
         {
-          "hash": "f1b0516be11dbd02eb1c3b204806e2212b3fa78d1fcf18912d2fee99f257d51d",
+          "hash": "3c192a30746d4bd0dd2d24b262d9faa3ae937a45430eb06dccc725a0cfab2743",
           "id": "openbitfun-midnight",
           "type": "dark",
         },
         {
-          "hash": "db979037b2785c346b5fa06905aa84db43bcb39217e123f26cd6aad2231248a8",
+          "hash": "b48ff5817b5f2a451c30a6e0369fcce19853f1d8988a37ece0f9a7e3052a2d0d",
           "id": "openbitfun-china-style",
           "type": "light",
         },
         {
-          "hash": "30a425ebcf4e4121e8a426c1dca981944d99b0523c21477cbe6c59b111e11b0e",
+          "hash": "fdd18987cbc66f92f9533a8ccabfd1599e2d057bc1b4b4140142eeca39be90c8",
           "id": "openbitfun-china-night",
           "type": "dark",
         },
         {
-          "hash": "b82c17ad7f03db017974d4a300294f4efd11bb06a56150c5217b24fa1be37614",
+          "hash": "9b258373fc6c721cbb1437f5d1d86bd5d1ef7b752e023d9f3dcb7936629fa1bf",
           "id": "openbitfun-cyber",
           "type": "dark",
         },
         {
-          "hash": "ab337e00902219e4b56980511d12d761b08f5fc6913329a8c5c555b44a652a1c",
+          "hash": "d9d4e41d17902e48b0e988af1cf91f864866e2af1c8ade33ad751e1de44b0840",
           "id": "openbitfun-tokyo-night",
           "type": "dark",
         },

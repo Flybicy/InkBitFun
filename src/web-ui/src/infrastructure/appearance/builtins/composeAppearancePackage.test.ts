@@ -36,7 +36,7 @@ describe('composeAppearancePackage', () => {
     const payload = JSON.stringify(original);
     const resolved = composeAppearancePackage(JSON.parse(payload));
     expect(resolved.renderers!['theme-tokens']!.settings.tokens).toMatchObject({
-      '--openbitfun-component-update-material-cyan': '#059cb0',
+      '--openbitfun-component-update-material-cyan': '#537D96',
       '--openbitfun-color-accent-default': '#7755aa',
     });
     expect(composeAppearancePackage(JSON.parse(JSON.stringify(resolved))).renderers?.['theme-tokens'])
@@ -58,7 +58,7 @@ describe('composeAppearancePackage', () => {
     };
     const resolved = composeAppearancePackage(JSON.parse(JSON.stringify(original)));
     const tokens = resolved.renderers!['theme-tokens']!.settings.tokens;
-    expect(tokens['--openbitfun-component-conversation-excerpt-accent']).toBe('#059cb0');
+    expect(tokens['--openbitfun-component-conversation-excerpt-accent']).toBe('#537D96');
     expect(tokens['--openbitfun-color-accent-default']).toBe('#7755aa');
     expect(composeAppearancePackage(JSON.parse(JSON.stringify(resolved))).renderers?.['theme-tokens'])
       .toEqual(resolved.renderers?.['theme-tokens']);
@@ -186,7 +186,7 @@ describe('composeAppearancePackage', () => {
       '--openbitfun-component-button-primary-background': '#123456',
       '--openbitfun-component-button-fill-background': '#eeeeee',
       '--openbitfun-component-button-text-content': '#007766',
-      '--openbitfun-component-button-primary-content-disabled': 'rgba(0, 0, 0, 0.20)',
+      '--openbitfun-component-button-primary-content-disabled': 'rgba(255, 253, 248, 0.35)',
     });
     expect(settings?.scopes?.chrome?.['--openbitfun-component-button-content']).toBe('#445566');
     expect(composeAppearancePackage(JSON.parse(JSON.stringify(resolved))).renderers?.['theme-tokens']).toEqual(
