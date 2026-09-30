@@ -18,7 +18,7 @@
       "radiusBase": "8px",
       "spacing4": "16px",
       "shadowBase": "0 4px 8px rgba(42, 38, 34, 0.08)",
-      "styleNotes": "Light appearance - 书墨印章: warm xuan-paper surfaces, 墨 ink text, seal-blue accents"
+      "styleNotes": "Light appearance - ink and seal: warm xuan-paper surfaces, ink text, seal-blue accents"
     },
     {
       "id": "openbitfun-monochrome",
@@ -69,7 +69,7 @@
       "radiusBase": "8px",
       "spacing4": "16px",
       "shadowBase": "0 4px 8px rgba(13, 11, 9, 0.7)",
-      "styleNotes": "Dark appearance - 书墨印章 night: warm ink surfaces, seal-blue accents"
+      "styleNotes": "Dark appearance - ink and seal night: warm ink surfaces, seal-blue accents"
     },
     {
       "id": "openbitfun-midnight",

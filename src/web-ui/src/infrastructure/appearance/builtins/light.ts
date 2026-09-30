@@ -42,7 +42,7 @@ export const openBitFunLightPalette: AppearancePalette = {
   id: 'openbitfun-light',
   name: 'Light',
   type: 'light',
-  description: 'Light appearance - 书墨印章: warm xuan-paper surfaces, 墨 ink text, seal-blue accents',
+  description: 'Light appearance - ink and seal: warm xuan-paper surfaces, ink text, seal-blue accents',
   author: 'OpenBitFun Team',
   version: '2.5.0',
 

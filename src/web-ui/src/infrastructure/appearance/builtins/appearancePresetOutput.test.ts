@@ -233,7 +233,7 @@ describe('builtin appearance preset output', () => {
     const tokens = getBuiltinAppearanceThemeTokens('openbitfun-light');
 
     expect(lightAppearance).toMatchObject({
-      description: 'Light appearance - 书墨印章: warm xuan-paper surfaces, 墨 ink text, seal-blue accents',
+      description: 'Light appearance - ink and seal: warm xuan-paper surfaces, ink text, seal-blue accents',
       version: '2.5.0',
       colors: {
         background: {
@@ -451,7 +451,7 @@ describe('builtin appearance preset output', () => {
     }))).toMatchInlineSnapshot(`
       [
         {
-          "hash": "392e37344175f7df0245428ad971d474c85713d4c2ca3fd76d6f1cd344116920",
+          "hash": "d3f64b63aeee06f7aa7a47fc3f61d1e96d0c257a94801fc9b8acc581e2f92c3d",
           "id": "openbitfun-light",
           "type": "light",
         },
@@ -466,7 +466,7 @@ describe('builtin appearance preset output', () => {
           "type": "dark",
         },
         {
-          "hash": "05dc43ed85aeb9870b73d87807c3fd209ac1733632287f68bffaf223fc37535e",
+          "hash": "f634445686603779d817136a0a2444e18c43d320c6ebd6543de5f3cf3c50b960",
           "id": "openbitfun-dark",
           "type": "dark",
         },

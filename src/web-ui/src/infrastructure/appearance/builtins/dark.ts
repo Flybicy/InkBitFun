@@ -34,7 +34,7 @@ export const openBitFunDarkPalette: AppearancePalette = {
   id: 'openbitfun-dark',
   name: 'Dark',
   type: 'dark',
-  description: 'Dark appearance - 书墨印章 night: warm ink surfaces, seal-blue accents',
+  description: 'Dark appearance - ink and seal night: warm ink surfaces, seal-blue accents',
   author: 'OpenBitFun Team',
   version: '2.1.0',
 
