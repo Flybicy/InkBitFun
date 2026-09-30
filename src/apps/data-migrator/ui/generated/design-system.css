@@ -793,7 +793,7 @@
     --openbitfun-color-code-change-removed: #6B2315;
     --openbitfun-color-code-diff-added-gutter: #EFF3ED;
     --openbitfun-color-code-diff-added-line: #ECF1EA;
-    --openbitfun-color-code-diff-added-marker: #5B7A59;
+    --openbitfun-color-code-diff-added-marker: #4A6B4A;
     --openbitfun-color-code-diff-added-word: #CBD8C6;
     --openbitfun-color-code-diff-foreground: #090909;
     --openbitfun-color-code-diff-gutter-border: #FFFDF8;
@@ -979,14 +979,14 @@
     --openbitfun-color-code-diff-removed-marker: #DBA69D;
     --openbitfun-color-code-diff-removed-word: color-mix(in srgb, #DBA69D 22%, #161310);
     --openbitfun-color-code-diff-syntax-comment: #A1927F;
-    --openbitfun-color-code-diff-syntax-declaration: #8B7CA4;
-    --openbitfun-color-code-diff-syntax-function: #9284A9;
-    --openbitfun-color-code-diff-syntax-keyword: #B4737F;
+    --openbitfun-color-code-diff-syntax-declaration: #9284A9;
+    --openbitfun-color-code-diff-syntax-function: #B3A8C4;
+    --openbitfun-color-code-diff-syntax-keyword: #BD7F88;
     --openbitfun-color-code-diff-syntax-number: #93B0BD;
-    --openbitfun-color-code-diff-syntax-operator: #6489A0;
+    --openbitfun-color-code-diff-syntax-operator: #7395A8;
     --openbitfun-color-code-diff-syntax-property: #B58F46;
     --openbitfun-color-code-diff-syntax-punctuation: #C6BBA7;
-    --openbitfun-color-code-diff-syntax-string: #6B8A69;
+    --openbitfun-color-code-diff-syntax-string: #8CA488;
     --openbitfun-color-code-diff-syntax-variable: #C09C57;
     --openbitfun-color-composer-border: rgba(240, 232, 216, 0.16);
     --openbitfun-color-composer-context-background: rgba(240, 232, 216, 0.07);

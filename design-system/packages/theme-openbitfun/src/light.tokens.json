@@ -239,7 +239,7 @@
       "lineNumber": { "$type": "color", "$value": "{ref.color.neutral.750}" },
       "gutterBorder": { "$type": "color", "$value": "{ref.color.neutral.0}" },
       "added": {
-        "marker": { "$type": "color", "$value": "{ref.color.green.450}" },
+        "marker": { "$type": "color", "$value": "{ref.color.green.500}" },
         "line": { "$type": "color", "$value": "{ref.color.green.75}" },
         "gutter": { "$type": "color", "$value": "{ref.color.green.60}" },
         "word": { "$type": "color", "$value": "{ref.color.green.150}" }

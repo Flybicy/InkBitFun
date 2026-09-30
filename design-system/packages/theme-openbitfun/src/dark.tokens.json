@@ -253,14 +253,14 @@
       "syntax": {
         "comment": { "$type": "color", "$value": "{ref.color.neutral.450}" },
         "punctuation": { "$type": "color", "$value": "{ref.color.neutral.350}" },
-        "keyword": { "$type": "color", "$value": "{ref.color.pink.450}" },
-        "declaration": { "$type": "color", "$value": "{ref.color.purple.410}" },
-        "function": { "$type": "color", "$value": "{ref.color.purple.400}" },
-        "string": { "$type": "color", "$value": "{ref.color.green.400}" },
+        "keyword": { "$type": "color", "$value": "{ref.color.pink.400}" },
+        "declaration": { "$type": "color", "$value": "{ref.color.purple.400}" },
+        "function": { "$type": "color", "$value": "{ref.color.purple.300}" },
+        "string": { "$type": "color", "$value": "{ref.color.green.300}" },
         "number": { "$type": "color", "$value": "{ref.color.cyan.300}" },
         "property": { "$type": "color", "$value": "{ref.color.amber.450}" },
         "variable": { "$type": "color", "$value": "{ref.color.amber.400}" },
-        "operator": { "$type": "color", "$value": "{ref.color.cyan.425}" }
+        "operator": { "$type": "color", "$value": "{ref.color.cyan.400}" }
       }
     },
     "status": {

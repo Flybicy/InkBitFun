@@ -128,7 +128,7 @@ test("code-change semantics retain the requested addition and removal accents", 
 
 test("read-only diffs own reference colors without changing status semantics", () => {
   const light = themes.light;
-  assert.equal(light["color.codeDiff.added.marker"], "#5B7A59");
+  assert.equal(light["color.codeDiff.added.marker"], "#4A6B4A");
   assert.equal(light["color.codeDiff.removed.marker"], "#A94838");
   assert.equal(light["color.codeDiff.added.line"], "#ECF1EA");
   assert.equal(light["color.codeDiff.removed.line"], "#F5E7E3");
