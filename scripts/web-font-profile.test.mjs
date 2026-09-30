@@ -7,15 +7,18 @@ import {
   APPLE_SYSTEM_FONT_PROFILE,
   HARMONY_BUNDLED_FONT_PROFILE,
   HARMONY_FONT_ASSETS,
+  MISANS_FONT_ASSETS,
   assertWebFontProfileBundle,
   fontProfileForDesktopTarget,
   normalizeWebFontProfile,
   resolveWebFontProfile,
   verifyHarmonyFontSources,
+  verifyMiSansFontSources,
 } from './web-font-profile.mjs';
 
 const ROOT = join(import.meta.dirname, '..');
 const HARMONY_ROOT = join(ROOT, 'src/web-ui/src/assets/fonts/harmonyos-sans');
+const MISANS_ROOT = join(ROOT, 'src/web-ui/src/assets/fonts/misans');
 const harmonyBundle = [
   ...HARMONY_FONT_ASSETS
     .filter(({ relativePath }) => relativePath.endsWith('.ttf'))
@@ -27,9 +30,15 @@ const harmonyBundle = [
   'assets/FiraCode-Medium-contenthash.woff2',
   'assets/FiraCode-SemiBold-contenthash.woff2',
   'assets/FiraCode-VF-contenthash.woff2',
+  ...MISANS_FONT_ASSETS.map(
+    ({ relativePath }) => 'assets/'
+      + relativePath.replace(/\.woff2$/, '') + '-contenthash.woff2',
+  ),
   'third-party/fonts/harmonyos-sans/LICENSE.txt',
   'third-party/fonts/harmonyos-sans/NOTICE.txt',
   'third-party/fonts/fira-code/LICENSE.txt',
+  'third-party/fonts/misans/LICENSE.txt',
+  'third-party/fonts/misans/NOTICE.txt',
   'assets/KaTeX_Main-Regular-contenthash.woff2',
   'assets/codicon-contenthash.ttf',
 ];
@@ -79,6 +88,43 @@ test('Harmony source profile contains only the two approved unmodified variable 
   verifyHarmonyFontSources(HARMONY_ROOT);
 });
 
+test('MiSans ships the unmodified pinned display weights and never leaks elsewhere', () => {
+  verifyMiSansFontSources(MISANS_ROOT);
+
+  const stems = MISANS_FONT_ASSETS.map(
+    ({ relativePath }) => relativePath.replace(/\.woff2$/, ''),
+  );
+  assert.deepEqual(stems.slice().sort(), ['MiSans-Bold', 'MiSans-Semibold']);
+  for (const { relativePath, bytes, sha256 } of MISANS_FONT_ASSETS) {
+    const source = readFileSync(join(MISANS_ROOT, relativePath));
+    assert.equal(source.length, bytes);
+    assert.equal(createHash('sha256').update(source).digest('hex').toUpperCase(), sha256);
+  }
+
+  for (const stem of stems) {
+    assert.throws(
+      () => assertWebFontProfileBundle(
+        HARMONY_BUNDLED_FONT_PROFILE,
+        harmonyBundle.filter((name) => !name.includes('assets/' + stem + '-')),
+      ),
+      new RegExp('missing font assets: ' + stem),
+    );
+  }
+  assert.throws(
+    () => assertWebFontProfileBundle(
+      HARMONY_BUNDLED_FONT_PROFILE,
+      harmonyBundle.filter((name) => name !== 'third-party/fonts/misans/LICENSE.txt'),
+    ),
+    /missing legal asset/,
+  );
+  assert.throws(
+    () => assertWebFontProfileBundle(HARMONY_BUNDLED_FONT_PROFILE, [
+      ...harmonyBundle,
+      'assets/MiSans-Regular-contenthash.woff2',
+    ]),
+    /unapproved font assets/,
+  );
+});
 test('bundled font variation axes and CSS cover every design-system weight', () => {
   const system = JSON.parse(readFileSync(join(
     ROOT, 'design-system/packages/design-tokens/src/system.tokens.json',
@@ -150,6 +196,8 @@ test('Apple bundles reject product text fonts but allow functional fonts', () =>
     'assets/HarmonyOS_Sans_SC-contenthash.ttf',
     'assets/HarmonyOS_Sans_SC_Regular-contenthash.ttf',
     'assets/FiraCode-Regular-contenthash.woff2',
+    'assets/MiSans-Semibold-contenthash.woff2',
+    'assets/MiSans-Bold-contenthash.woff2',
     'fonts/noto-sans-sc-latin-wght-normal.woff2',
   ]) {
     assert.throws(

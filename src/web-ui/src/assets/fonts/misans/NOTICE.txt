@@ -1,0 +1,24 @@
+MiSans Fonts Notice
+
+Non-Apple OpenBitFun GUI distributions use unmodified copies of Xiaomi's MiSans
+fonts so the ink/seal display face renders identically on Windows and Linux.
+Copyright Xiaomi Inc. (小米科技有限责任公司).
+
+Bundled faces: MiSans Semibold (600) and MiSans Bold (700).
+These are the unmodified official WOFF2 exports from Xiaomi's package:
+https://hyperos.mi.com/font-download/MiSans.zip
+The package page: https://hyperos.mi.com/font. Retrieved: 2026/09/30.
+
+The ink/seal display role only ever asks for the design system's semibold (600)
+and bold (700) weights -- every --openbitfun-type-display-*/heading-* token
+resolves to one of the two -- which is why exactly those two files are carried.
+A request outside 600/700 deliberately falls through to the next family in the
+display stack (HarmonyOS Sans SC, PingFang SC, Microsoft YaHei UI, Segoe UI)
+rather than shipping a synthesized blend. macOS keeps the apple-system profile,
+so it ships no product text font at all and uses a locally installed MiSans when
+present.
+
+The complete MiSans Fonts Intellectual Property License Agreement
+(《MiSans 字体知识产权许可协议》) is provided in the adjacent LICENSE.txt file,
+quoted unchanged from the official download page. Source byte sizes and SHA-256
+hashes are verified by scripts/web-font-profile.mjs.

@@ -1,23 +1,24 @@
 /*
  * Ink/seal display face (shu mo yin zhang).
  *
- * The design system ships no display face of its own, and the governance audit
- * only permits a raw font stack inside this font-profile root, so the stack is
- * declared here once and consumed through --openbitfun-font-family-display by
+ * The design system ships no display face of its own, so the stack is declared
+ * here once and consumed through --openbitfun-font-family-display by
  * src/app/styles/ink-seal.css.
  *
  * The serif detour is over: large CJK type reads as crisp rather than decorative
  * in a modern sans, and one now carries the whole product so headings and body
- * copy stay in the same voice. MiSans leads because that is the kind of face the
- * product is aiming at -- a locally installed MiSans copy is picked up without
- * shipping a binary and without touching the font bundle. Everything else then
- * lands on a face the build already owns: HarmonyOS Sans SC on Windows and Linux
- * through the harmony-bundled profile, PingFang SC on macOS through the
- * apple-system profile, and Microsoft YaHei UI on Windows without a bundled
- * profile.
+ * copy stay in the same voice. MiSans leads because that is the kind of face
+ * the product is aiming at, and the harmony-bundled profile now actually ships
+ * it: Xiaomi's official unmodified Semibold and Bold WOFF2 exports are pinned
+ * and byte-verified under src/assets/fonts/misans/, so the display face is
+ * identical on Windows and Linux instead of merely requested. HarmonyOS Sans SC
+ * follows on Windows and Linux, PingFang SC on macOS, and Microsoft YaHei UI on
+ * Windows without a bundled profile.
  *
- * Local faces only: no binary font asset is added, so the web-font profile
- * bundle verification (scripts/web-font-profile.mjs) is untouched.
+ * macOS keeps the apple-system profile and therefore ships no product text font
+ * at all -- a locally installed MiSans is picked up there instead. The bundled
+ * faces live in src/font-profiles/harmony-bundled.css; the pinned bytes, hashes
+ * and emitted legal files are governed by scripts/web-font-profile.mjs.
  */
 
 @layer openbitfun.tokens.system {

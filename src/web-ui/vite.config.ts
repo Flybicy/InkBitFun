@@ -13,6 +13,7 @@ import {
   assertWebFontProfileBundle,
   resolveWebFontProfile,
   verifyHarmonyFontSources,
+  verifyMiSansFontSources,
 } from "../../scripts/web-font-profile.mjs";
 
 import { resolveDevServerPorts } from '../../scripts/dev-server-ports.mjs';
@@ -35,6 +36,7 @@ export function createWebFontProfilePlugin(
 
   if (command === 'build' && profile === HARMONY_BUNDLED_FONT_PROFILE) {
     verifyHarmonyFontSources(path.join(fontAssetDirectory, 'harmonyos-sans'));
+    verifyMiSansFontSources(path.join(fontAssetDirectory, 'misans'));
   }
 
   return {
@@ -71,6 +73,14 @@ export function createWebFontProfilePlugin(
         [
           'third-party/fonts/fira-code/LICENSE.txt',
           path.join(fontAssetDirectory, 'fira-code/LICENSE.txt'),
+        ],
+        [
+          'third-party/fonts/misans/LICENSE.txt',
+          path.join(fontAssetDirectory, 'misans/LICENSE.txt'),
+        ],
+        [
+          'third-party/fonts/misans/NOTICE.txt',
+          path.join(fontAssetDirectory, 'misans/NOTICE.txt'),
         ],
       ]) {
         this.emitFile({ type: 'asset', fileName, source: readFileSync(sourcePath) });

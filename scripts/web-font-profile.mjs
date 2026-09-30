@@ -37,7 +37,35 @@ const FIRA_FONT_STEMS = Object.freeze([
   'FiraCode-VF',
 ]);
 
-const PRODUCT_FONT_ASSET_PATTERN = /(?:HarmonyOS[_-]Sans|FiraCode-|Noto[_-]Sans[_-]SC)[^/]*\.(?:ttf|otf|woff2?)$/i;
+/*
+ * MiSans is Xiaomi's HyperOS display face. It rides the harmony-bundled profile
+ * only, and only in the two weights the design system's display and heading
+ * tokens ever request (600/700), so a portable build shows the intended display
+ * face without carrying Xiaomi's whole family. The apple-system profile keeps
+ * shipping no product text font at all and uses a locally installed MiSans.
+ * The MiSans 字体知识产权许可协议 credits MiSans in the software and forbids
+ * adapting a component or distributing the font software on its own, so these
+ * are the unmodified official WOFF2 exports and their bytes and hashes are
+ * pinned here exactly like the HarmonyOS Sans sources below.
+ */
+export const MISANS_FONT_ASSETS = Object.freeze([
+  {
+    relativePath: 'MiSans-Semibold.woff2',
+    bytes: 5_034_212,
+    sha256: '78227C6EC59566785C65AC0B5312328BFA2F879918F3D7403725785615A9A8F6',
+  },
+  {
+    relativePath: 'MiSans-Bold.woff2',
+    bytes: 5_081_104,
+    sha256: '1C5A7515B61BC82BAAA2E2C2FDAE2032479FB9A99E09D4D021DC17314FC5939B',
+  },
+]);
+
+const MISANS_FONT_STEMS = Object.freeze(
+  MISANS_FONT_ASSETS.map(({ relativePath }) => relativePath.replace(/\.woff2$/, '')),
+);
+
+const PRODUCT_FONT_ASSET_PATTERN = /(?:HarmonyOS[_-]Sans|FiraCode-|Noto[_-]Sans[_-]SC|MiSans[_-])[^/]*\.(?:ttf|otf|woff2?)$/i;
 
 export function normalizeWebFontProfile(value) {
   if (value === APPLE_SYSTEM_FONT_PROFILE || value === HARMONY_BUNDLED_FONT_PROFILE) {
@@ -71,13 +99,13 @@ export function fontProfileForDesktopTarget({ target, platform = process.platfor
     : HARMONY_BUNDLED_FONT_PROFILE;
 }
 
-export function verifyHarmonyFontSources(assetRoot) {
-  for (const expected of HARMONY_FONT_ASSETS) {
+function verifyPinnedFontSources(assetRoot, assets, familyLabel) {
+  for (const expected of assets) {
     const source = readFileSync(join(assetRoot, ...expected.relativePath.split('/')));
     const actualHash = createHash('sha256').update(source).digest('hex').toUpperCase();
     if (source.byteLength !== expected.bytes || actualHash !== expected.sha256) {
       throw new Error(
-        `HarmonyOS Sans source changed: ${expected.relativePath}. `
+        `${familyLabel} source changed: ${expected.relativePath}. `
           + `Expected ${expected.bytes} bytes / ${expected.sha256}, `
           + `received ${source.byteLength} bytes / ${actualHash}.`,
       );
@@ -85,8 +113,8 @@ export function verifyHarmonyFontSources(assetRoot) {
   }
 
   const expectedFontPaths = new Set(
-    HARMONY_FONT_ASSETS
-      .filter(({ relativePath }) => relativePath.endsWith('.ttf'))
+    assets
+      .filter(({ relativePath }) => /\.(?:ttf|otf|woff2?)$/i.test(relativePath))
       .map(({ relativePath }) => relativePath.toLowerCase()),
   );
   const unexpectedFonts = listFontFiles(assetRoot).filter(
@@ -94,9 +122,17 @@ export function verifyHarmonyFontSources(assetRoot) {
   );
   if (unexpectedFonts.length > 0) {
     throw new Error(
-      `HarmonyOS Sans source contains unapproved font files: ${unexpectedFonts.join(', ')}`,
+      `${familyLabel} source contains unapproved font files: ${unexpectedFonts.join(', ')}`,
     );
   }
+}
+
+export function verifyHarmonyFontSources(assetRoot) {
+  verifyPinnedFontSources(assetRoot, HARMONY_FONT_ASSETS, 'HarmonyOS Sans');
+}
+
+export function verifyMiSansFontSources(assetRoot) {
+  verifyPinnedFontSources(assetRoot, MISANS_FONT_ASSETS, 'MiSans');
 }
 
 export function assertWebFontProfileBundle(profile, bundleFileNames) {
@@ -113,7 +149,7 @@ export function assertWebFontProfileBundle(profile, bundleFileNames) {
     return;
   }
 
-  const expectedStems = [...HARMONY_FONT_STEMS, ...FIRA_FONT_STEMS];
+  const expectedStems = [...HARMONY_FONT_STEMS, ...FIRA_FONT_STEMS, ...MISANS_FONT_STEMS];
   const matchesByStem = new Map(
     expectedStems.map((stem) => [
       stem,
@@ -155,6 +191,8 @@ export function assertWebFontProfileBundle(profile, bundleFileNames) {
     'third-party/fonts/harmonyos-sans/LICENSE.txt',
     'third-party/fonts/harmonyos-sans/NOTICE.txt',
     'third-party/fonts/fira-code/LICENSE.txt',
+    'third-party/fonts/misans/LICENSE.txt',
+    'third-party/fonts/misans/NOTICE.txt',
   ]) {
     if (!names.includes(legalFile)) {
       throw new Error(`Harmony Web bundle is missing legal asset: ${legalFile}`);

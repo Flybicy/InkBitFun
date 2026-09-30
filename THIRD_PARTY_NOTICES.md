@@ -20,6 +20,25 @@ Chinese UI text use platform system fonts instead.
 The complete license agreement and a font-specific notice are included only in
 the non-Apple frontend artifact under `third-party/fonts/harmonyos-sans/`.
 
+## MiSans Fonts
+
+- Project: MiSans Fonts
+- Provider: Xiaomi Inc. (小米科技有限责任公司)
+- Source: https://hyperos.mi.com/font-download/MiSans.zip
+- Page: https://hyperos.mi.com/font
+- License: MiSans Fonts Intellectual Property License Agreement
+  (《MiSans 字体知识产权许可协议》)
+- Copyright: Copyright Xiaomi Inc. (小米科技有限责任公司)
+
+Non-Apple OpenBitFun GUI distributions bundle unmodified copies of Xiaomi's
+Semibold (600) and Bold (700) WOFF2 exports so the ink/seal display face
+renders identically on Windows and Linux. The design system asks for no other
+display weight, so no additional family member is carried; macOS keeps the
+apple-system profile and therefore ships no MiSans at all. The agreement is
+quoted unchanged in `third-party/fonts/misans/LICENSE.txt`, with a
+font-specific notice in `third-party/fonts/misans/NOTICE.txt`, both included
+only in the non-Apple frontend artifact.
+
 ## models.dev catalog data
 
 - Project: models.dev
