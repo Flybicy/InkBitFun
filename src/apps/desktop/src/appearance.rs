@@ -77,7 +77,7 @@ fn windows_supports_native_window_material() -> bool {
 fn windows_build_number() -> Option<u32> {
     use windows::Win32::Foundation::ERROR_SUCCESS;
     use windows::Win32::System::Registry::{
-        RegCloseKey, RegOpenKeyExW, RegQueryValueExW, HKEY, HKEY_LOCAL_MACHINE, KEY_READ,
+        RegCloseKey, RegOpenKeyExW, RegQueryValueExW, HKEY, HKEY_LOCAL_MACHINE, KEY_READ, REG_SZ,
         REG_VALUE_TYPE,
     };
     use windows::core::PCWSTR;
