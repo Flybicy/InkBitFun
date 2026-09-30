@@ -366,7 +366,7 @@ test('theme color audit emits scoped machine-readable reports', (t) => {
     'app/App.scss': [
       '.app {',
       '  color: #444444;',
-      '  background: var(--fallback-only, #ffffff);',
+      '  background: var(--fallback-only, #111111);',
       '  border-color: var(--runtime-only);',
       '}',
       '',
