@@ -4,193 +4,517 @@
     "color": {
       "$type": "color",
       "neutral": {
-        "$description": "Cool neutral scale used by the standard light and dark schemes.",
-        "0": { "$value": "#ffffff" },
-        "50": { "$value": "#fdfdfd" },
-        "70": { "$value": "#f8f8f9" },
-        "75": { "$value": "#f7f7f7" },
-        "100": { "$value": "#f3f3f5" },
-        "150": { "$value": "#ededee" },
-        "200": { "$value": "#e8e8e8" },
-        "250": { "$value": "#dddddd" },
-        "300": { "$value": "#c9c9cc" },
-        "350": { "$value": "#b0b0b0" },
-        "400": { "$value": "#a1a1aa" },
-        "450": { "$value": "#9a9a9a" },
-        "500": { "$value": "#8f8f92" },
-        "550": { "$value": "#858585" },
-        "600": { "$value": "#77777a" },
-        "650": { "$value": "#6a6a6a" },
-        "700": { "$value": "#5f5f62" },
-        "750": { "$value": "#555555" },
-        "800": { "$value": "#404044" },
-        "850": { "$value": "#2f2f33" },
-        "900": { "$value": "#1c1c1f" },
-        "950": { "$value": "#0e0e10" },
-        "1000": { "$value": "#000000" }
+        "0": {
+          "$value": "#FFFDF8"
+        },
+        "50": {
+          "$value": "#FDFAF3"
+        },
+        "70": {
+          "$value": "#FBF6EC"
+        },
+        "75": {
+          "$value": "#FAF4E9"
+        },
+        "100": {
+          "$value": "#F5EFE4"
+        },
+        "150": {
+          "$value": "#EFE8DB"
+        },
+        "200": {
+          "$value": "#E9E1D1"
+        },
+        "250": {
+          "$value": "#DFD5C2"
+        },
+        "300": {
+          "$value": "#D8CFBE"
+        },
+        "350": {
+          "$value": "#C6BBA7"
+        },
+        "400": {
+          "$value": "#B3A793"
+        },
+        "450": {
+          "$value": "#A1927F"
+        },
+        "500": {
+          "$value": "#8F7F6C"
+        },
+        "550": {
+          "$value": "#7C6D5B"
+        },
+        "600": {
+          "$value": "#6B6158"
+        },
+        "650": {
+          "$value": "#5A5249"
+        },
+        "700": {
+          "$value": "#4A433C"
+        },
+        "750": {
+          "$value": "#3B352F"
+        },
+        "800": {
+          "$value": "#2A2622"
+        },
+        "850": {
+          "$value": "#201D19"
+        },
+        "900": {
+          "$value": "#161310"
+        },
+        "950": {
+          "$value": "#0D0B09"
+        },
+        "1000": {
+          "$value": "#000000"
+        },
+        "$description": "Xuan-paper and ink scale for the shu-mo-seal aesthetic. Steps 100-300 are warm paper, 600-800 are ink."
       },
       "gray": {
-        "$description": "Strict grayscale used when high-contrast modes need predictable black-to-white separation.",
-        "0": { "$value": "#ffffff" },
-        "50": { "$value": "#f0f0f0" },
-        "100": { "$value": "#e6e6e6" },
-        "150": { "$value": "#d0d0d0" },
-        "200": { "$value": "#cccccc" },
-        "250": { "$value": "#b5b5b5" },
-        "300": { "$value": "#b3b3b3" },
-        "350": { "$value": "#9e9e9e" },
-        "400": { "$value": "#8a8a8a" },
-        "450": { "$value": "#7c7c7c" },
-        "500": { "$value": "#707070" },
-        "550": { "$value": "#6b6b6b" },
-        "600": { "$value": "#505050" },
-        "650": { "$value": "#3b3b3b" },
-        "700": { "$value": "#343434" },
-        "750": { "$value": "#262626" },
-        "800": { "$value": "#161616" },
-        "850": { "$value": "#101010" },
-        "900": { "$value": "#090909" },
-        "950": { "$value": "#040404" },
-        "1000": { "$value": "#000000" }
+        "0": {
+          "$value": "#ffffff"
+        },
+        "50": {
+          "$value": "#f0f0f0"
+        },
+        "100": {
+          "$value": "#e6e6e6"
+        },
+        "150": {
+          "$value": "#d0d0d0"
+        },
+        "200": {
+          "$value": "#cccccc"
+        },
+        "250": {
+          "$value": "#b5b5b5"
+        },
+        "300": {
+          "$value": "#b3b3b3"
+        },
+        "350": {
+          "$value": "#9e9e9e"
+        },
+        "400": {
+          "$value": "#8a8a8a"
+        },
+        "450": {
+          "$value": "#7c7c7c"
+        },
+        "500": {
+          "$value": "#707070"
+        },
+        "550": {
+          "$value": "#6b6b6b"
+        },
+        "600": {
+          "$value": "#505050"
+        },
+        "650": {
+          "$value": "#3b3b3b"
+        },
+        "700": {
+          "$value": "#343434"
+        },
+        "750": {
+          "$value": "#262626"
+        },
+        "800": {
+          "$value": "#161616"
+        },
+        "850": {
+          "$value": "#101010"
+        },
+        "900": {
+          "$value": "#090909"
+        },
+        "950": {
+          "$value": "#040404"
+        },
+        "1000": {
+          "$value": "#000000"
+        },
+        "$description": "Strict grayscale used when high-contrast modes need predictable black-to-white separation."
       },
       "navy": {
-        "$description": "Blue-black scale for OpenBitFun's restrained primary surfaces and actions.",
-        "50": { "$value": "#f4f7fa" },
-        "100": { "$value": "#e6ecf3" },
-        "200": { "$value": "#c8d5e3" },
-        "300": { "$value": "#9eb2c8" },
-        "400": { "$value": "#708ca9" },
-        "500": { "$value": "#526f8d" },
-        "600": { "$value": "#3f5771" },
-        "700": { "$value": "#304357" },
-        "800": { "$value": "#223142" },
-        "900": { "$value": "#182432" },
-        "950": { "$value": "#101a27" }
+        "50": {
+          "$value": "#F4F1EC"
+        },
+        "100": {
+          "$value": "#E9E5DD"
+        },
+        "200": {
+          "$value": "#CFC9BE"
+        },
+        "300": {
+          "$value": "#ADA595"
+        },
+        "400": {
+          "$value": "#8A8172"
+        },
+        "500": {
+          "$value": "#6E6558"
+        },
+        "600": {
+          "$value": "#564F45"
+        },
+        "700": {
+          "$value": "#403A33"
+        },
+        "800": {
+          "$value": "#2C2823"
+        },
+        "900": {
+          "$value": "#1E1A16"
+        },
+        "950": {
+          "$value": "#14110E"
+        },
+        "$description": "Ink-black scale (warm) for restrained primary surfaces and actions."
       },
       "blue": {
-        "$description": "Blue scale for focus, links, and informational emphasis.",
-        "50": { "$value": "#eff6ff" },
-        "100": { "$value": "#dbeafe" },
-        "200": { "$value": "#bfdbfe" },
-        "300": { "$value": "#93c5fd" },
-        "400": { "$value": "#60a5fa" },
-        "500": { "$value": "#3b82f6" },
-        "550": { "$value": "#2e7eff" },
-        "575": { "$value": "#3271d7" },
-        "600": { "$value": "#2563eb" },
-        "700": { "$value": "#005fcc" },
-        "800": { "$value": "#1e40af" },
-        "900": { "$value": "#1e3a8a" },
-        "950": { "$value": "#172554" }
+        "50": {
+          "$value": "#F0F3F6"
+        },
+        "100": {
+          "$value": "#DFE5EB"
+        },
+        "200": {
+          "$value": "#BECDD6"
+        },
+        "300": {
+          "$value": "#93A5B8"
+        },
+        "400": {
+          "$value": "#6C87A3"
+        },
+        "500": {
+          "$value": "#557091"
+        },
+        "550": {
+          "$value": "#47617F"
+        },
+        "575": {
+          "$value": "#3F5878"
+        },
+        "600": {
+          "$value": "#37506E"
+        },
+        "700": {
+          "$value": "#2C4260"
+        },
+        "800": {
+          "$value": "#22334C"
+        },
+        "900": {
+          "$value": "#1A2739"
+        },
+        "950": {
+          "$value": "#131C2A"
+        },
+        "$description": "Dai-blue (indigo ink) scale for informational status."
       },
       "cyan": {
-        "$description": "Cyan scale for interactive text, required markers, and active text-entry emphasis.",
-        "50": { "$value": "#effcff" },
-        "100": { "$value": "#d8f8fc" },
-        "200": { "$value": "#b4eff5" },
-        "300": { "$value": "#7cdee9" },
-        "400": { "$value": "#36c6d7" },
-        "425": { "$value": "#08c0ef" },
-        "475": { "$value": "#1ca1c7" },
-        "500": { "$value": "#059cb0" },
-        "600": { "$value": "#07879a" },
-        "700": { "$value": "#0a6d7d" },
-        "800": { "$value": "#0d5764" },
-        "900": { "$value": "#0e4853" },
-        "950": { "$value": "#072f38" }
+        "50": {
+          "$value": "#F1F5F6"
+        },
+        "100": {
+          "$value": "#E0EAEE"
+        },
+        "200": {
+          "$value": "#BCD0D8"
+        },
+        "300": {
+          "$value": "#93B0BD"
+        },
+        "400": {
+          "$value": "#7395A8"
+        },
+        "425": {
+          "$value": "#6489A0"
+        },
+        "475": {
+          "$value": "#5B8296"
+        },
+        "500": {
+          "$value": "#537D96"
+        },
+        "550": {
+          "$value": "#4A7088"
+        },
+        "600": {
+          "$value": "#3F6179"
+        },
+        "700": {
+          "$value": "#33505F"
+        },
+        "800": {
+          "$value": "#28414E"
+        },
+        "900": {
+          "$value": "#1D313C"
+        },
+        "950": {
+          "$value": "#14252E"
+        },
+        "$description": "Seal-blue scale (yi duo yuan shan qing). 500 #537D96 is the canonical seal accent, 600 #3F6179 its hover."
       },
       "purple": {
-        "$description": "Purple scale for secondary product emphasis and named product-domain identities.",
-        "50": { "$value": "#f7f2fc" },
-        "100": { "$value": "#eee5f7" },
-        "200": { "$value": "#dfceec" },
-        "300": { "$value": "#c8aedb" },
-        "400": { "$value": "#a98ac4" },
-        "410": { "$value": "#d568ea" },
-        "425": { "$value": "#9d6afb" },
-        "450": { "$value": "#9e54ff" },
-        "475": { "$value": "#c635e4" },
-        "500": { "$value": "#8b5cf6" },
-        "550": { "$value": "#b434ef" },
-        "600": { "$value": "#7c6b99" },
-        "650": { "$value": "#7b43f8" },
-        "700": { "$value": "#655680" },
-        "800": { "$value": "#504464" },
-        "900": { "$value": "#3c334b" },
-        "950": { "$value": "#282132" }
+        "50": {
+          "$value": "#F4F2F6"
+        },
+        "100": {
+          "$value": "#E8E4ED"
+        },
+        "200": {
+          "$value": "#D2CADB"
+        },
+        "300": {
+          "$value": "#B3A8C4"
+        },
+        "400": {
+          "$value": "#9284A9"
+        },
+        "410": {
+          "$value": "#8B7CA4"
+        },
+        "425": {
+          "$value": "#8275A0"
+        },
+        "450": {
+          "$value": "#7A6C99"
+        },
+        "475": {
+          "$value": "#726691"
+        },
+        "500": {
+          "$value": "#695E88"
+        },
+        "550": {
+          "$value": "#5F547C"
+        },
+        "600": {
+          "$value": "#554A70"
+        },
+        "650": {
+          "$value": "#4A4063"
+        },
+        "700": {
+          "$value": "#3E3653"
+        },
+        "800": {
+          "$value": "#322B43"
+        },
+        "900": {
+          "$value": "#262134"
+        },
+        "950": {
+          "$value": "#1B1826"
+        },
+        "$description": "Dai-purple (muted ink purple) scale."
       },
       "pink": {
-        "$description": "Pink scale for named assistant identity without borrowing product accent or status semantics.",
-        "50": { "$value": "#fdf2f8" },
-        "100": { "$value": "#fce7f3" },
-        "200": { "$value": "#fbcfe8" },
-        "300": { "$value": "#f9a8d4" },
-        "400": { "$value": "#f472b6" },
-        "450": { "$value": "#ff678d" },
-        "500": { "$value": "#ec4899" },
-        "550": { "$value": "#fc2b73" },
-        "600": { "$value": "#db2777" },
-        "700": { "$value": "#be185d" },
-        "800": { "$value": "#9d174d" },
-        "900": { "$value": "#831843" },
-        "950": { "$value": "#500724" }
+        "50": {
+          "$value": "#FAF2F3"
+        },
+        "100": {
+          "$value": "#F3E3E5"
+        },
+        "200": {
+          "$value": "#E6C7CB"
+        },
+        "300": {
+          "$value": "#D3A3AA"
+        },
+        "400": {
+          "$value": "#BD7F88"
+        },
+        "450": {
+          "$value": "#B4737F"
+        },
+        "500": {
+          "$value": "#A8626E"
+        },
+        "550": {
+          "$value": "#9A5460"
+        },
+        "600": {
+          "$value": "#8B4753"
+        },
+        "700": {
+          "$value": "#793B47"
+        },
+        "800": {
+          "$value": "#612F3A"
+        },
+        "900": {
+          "$value": "#4C252E"
+        },
+        "950": {
+          "$value": "#361A21"
+        },
+        "$description": "Yan-zhi (muted crimson) scale."
       },
       "green": {
-        "$description": "Green scale for affirmative status and positive product identities.",
-        "50": { "$value": "#effcf6" },
-        "60": { "$value": "#effbf8" },
-        "75": { "$value": "#eaf9f5" },
-        "100": { "$value": "#e1fbe9" },
-        "150": { "$value": "#c7f2eb" },
-        "200": { "$value": "#b6efd4" },
-        "300": { "$value": "#83e2b8" },
-        "400": { "$value": "#34d399" },
-        "450": { "$value": "#00cab1" },
-        "500": { "$value": "#34c78c" },
-        "550": { "$value": "#1aa73e" },
-        "600": { "$value": "#269f70" },
-        "625": { "$value": "#199f43" },
-        "700": { "$value": "#247344" },
-        "800": { "$value": "#1e5d3b" },
-        "900": { "$value": "#17482f" },
-        "950": { "$value": "#0a291c" }
+        "50": {
+          "$value": "#F1F4EF"
+        },
+        "60": {
+          "$value": "#EFF3ED"
+        },
+        "75": {
+          "$value": "#ECF1EA"
+        },
+        "100": {
+          "$value": "#E2E9DF"
+        },
+        "150": {
+          "$value": "#CBD8C6"
+        },
+        "200": {
+          "$value": "#B0C2AB"
+        },
+        "300": {
+          "$value": "#8CA488"
+        },
+        "400": {
+          "$value": "#6B8A69"
+        },
+        "450": {
+          "$value": "#5B7A59"
+        },
+        "500": {
+          "$value": "#4A6B4A"
+        },
+        "550": {
+          "$value": "#3F5C3F"
+        },
+        "600": {
+          "$value": "#365134"
+        },
+        "625": {
+          "$value": "#324C31"
+        },
+        "700": {
+          "$value": "#2A4129"
+        },
+        "800": {
+          "$value": "#223520"
+        },
+        "900": {
+          "$value": "#1A2A19"
+        },
+        "950": {
+          "$value": "#101D12"
+        },
+        "$description": "Mo-lv (ink green) scale. 500 #4A6B4A is the canonical ink green."
       },
       "amber": {
-        "$description": "Amber scale for warning status and high-contrast focus.",
-        "50": { "$value": "#fff9eb" },
-        "100": { "$value": "#ffefc7" },
-        "200": { "$value": "#ffdc89" },
-        "300": { "$value": "#ffda4d" },
-        "400": { "$value": "#ffcc00" },
-        "450": { "$value": "#ffa359" },
-        "500": { "$value": "#f59e0b" },
-        "525": { "$value": "#d5a910" },
-        "550": { "$value": "#ff8c00" },
-        "600": { "$value": "#c98216" },
-        "625": { "$value": "#d47628" },
-        "700": { "$value": "#9a651f" },
-        "800": { "$value": "#75501d" },
-        "900": { "$value": "#5e421b" },
-        "950": { "$value": "#35230d" }
+        "50": {
+          "$value": "#F8F4EA"
+        },
+        "100": {
+          "$value": "#F1E7CE"
+        },
+        "200": {
+          "$value": "#E4CFA4"
+        },
+        "300": {
+          "$value": "#D3B67C"
+        },
+        "400": {
+          "$value": "#C09C57"
+        },
+        "450": {
+          "$value": "#B58F46"
+        },
+        "500": {
+          "$value": "#A68235"
+        },
+        "525": {
+          "$value": "#9C7A2F"
+        },
+        "550": {
+          "$value": "#8F712A"
+        },
+        "600": {
+          "$value": "#7E6224"
+        },
+        "625": {
+          "$value": "#755B22"
+        },
+        "700": {
+          "$value": "#5F4B1C"
+        },
+        "800": {
+          "$value": "#4A3B17"
+        },
+        "900": {
+          "$value": "#3A2E13"
+        },
+        "950": {
+          "$value": "#281F0D"
+        },
+        "$description": "Zhe-shi (ochre) scale for warning status."
       },
       "red": {
-        "$description": "Red scale for destructive and error states.",
-        "50": { "$value": "#fff3f4" },
-        "65": { "$value": "#ffefec" },
-        "75": { "$value": "#ffeae6" },
-        "100": { "$value": "#ffe2e5" },
-        "150": { "$value": "#ffcecd" },
-        "200": { "$value": "#ffc9ce" },
-        "300": { "$value": "#fba2ad" },
-        "400": { "$value": "#f36f80" },
-        "450": { "$value": "#ff2e3f" },
-        "500": { "$value": "#ef4444" },
-        "600": { "$value": "#c95765" },
-        "650": { "$value": "#ec221f" },
-        "700": { "$value": "#a74352" },
-        "800": { "$value": "#853642" },
-        "900": { "$value": "#6d2f39" },
-        "950": { "$value": "#3d171e" }
+        "50": {
+          "$value": "#FAF1EF"
+        },
+        "65": {
+          "$value": "#F7ECE9"
+        },
+        "75": {
+          "$value": "#F5E7E3"
+        },
+        "100": {
+          "$value": "#F2DEDA"
+        },
+        "150": {
+          "$value": "#E7C2BB"
+        },
+        "200": {
+          "$value": "#DBA69D"
+        },
+        "300": {
+          "$value": "#C98173"
+        },
+        "400": {
+          "$value": "#B85F52"
+        },
+        "450": {
+          "$value": "#A94838"
+        },
+        "500": {
+          "$value": "#9C3527"
+        },
+        "550": {
+          "$value": "#8B2C1F"
+        },
+        "600": {
+          "$value": "#7A2718"
+        },
+        "650": {
+          "$value": "#6B2315"
+        },
+        "700": {
+          "$value": "#5B1E12"
+        },
+        "800": {
+          "$value": "#491810"
+        },
+        "900": {
+          "$value": "#39130C"
+        },
+        "950": {
+          "$value": "#280D08"
+        },
+        "$description": "Shen-zhu (deep vermilion) scale. 550 #8B2C1F is the canonical seal red."
       }
     }
   }

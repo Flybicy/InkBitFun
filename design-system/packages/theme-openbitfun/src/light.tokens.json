@@ -4,18 +4,18 @@
     "button": {
       "$description": "Button-specific state colors. Keep shared action colors stable for other controls and preserve contrast-mode feedback.",
       "content": { "$type": "color", "$value": "{color.action.neutral.content}" },
-      "textContent": { "$type": "color", "$value": "{color.accent.default}" },
-      "textContentHover": { "$type": "color", "$value": "{color.accent.hover}" },
+      "textContent": { "$type": "color", "$value": "{ref.color.cyan.600}" },
+      "textContentHover": { "$type": "color", "$value": "{ref.color.cyan.700}" },
       "textContentDisabled": { "$type": "color", "$value": "{color.accent.disabled}" },
       "outlineBorder": { "$type": "color", "$value": "{color.action.neutral.surfaceHover}" },
       "outlineBorderInteractive": { "$type": "color", "$value": "{color.action.neutral.surfaceHover}" },
       "fillBackground": { "$type": "color", "$value": "{color.action.neutral.surfaceHover}" },
       "fillBackgroundHover": { "$type": "color", "$value": "{color.action.neutral.surfaceHover}" },
       "fillBackgroundPressed": { "$type": "color", "$value": "{color.action.neutral.surfaceHover}" },
-      "primaryBackground": { "$type": "color", "$value": "rgba(0, 0, 0, 0.80)" },
-      "primaryBackgroundHover": { "$type": "color", "$value": "rgba(0, 0, 0, 0.60)" },
-      "primaryBackgroundPressed": { "$type": "color", "$value": "rgba(0, 0, 0, 0.90)" },
-      "primaryContentDisabled": { "$type": "color", "$value": "rgba(0, 0, 0, 0.20)" }
+      "primaryBackground": { "$type": "color", "$value": "rgba(20, 17, 14, 0.92)" },
+      "primaryBackgroundHover": { "$type": "color", "$value": "rgba(42, 38, 34, 0.72)" },
+      "primaryBackgroundPressed": { "$type": "color", "$value": "rgba(20, 17, 14, 1)" },
+      "primaryContentDisabled": { "$type": "color", "$value": "rgba(255, 253, 248, 0.35)" }
     },
     "empty": {
       "media": {
@@ -28,49 +28,49 @@
   "color": {
     "composer": {
       "border": { "$type": "color", "$value": "{color.field.border}" },
-      "contextBackground": { "$type": "color", "$value": "rgba(0, 0, 0, 0.03)" }
+      "contextBackground": { "$type": "color", "$value": "rgba(42, 38, 34, 0.04)" }
     },
     "numberBadge": {
       "background": { "$type": "color", "$value": "{color.action.neutral.surfaceHover}" }
     },
     "actionCard": {
-      "background": { "$type": "color", "$value": "rgba(0, 0, 0, 0.03)" }
+      "background": { "$type": "color", "$value": "rgba(42, 38, 34, 0.04)" }
     },
     "surface": {
-      "canvas": { "$type": "color", "$value": "{ref.color.neutral.50}" },
-      "panel": { "$type": "color", "$value": "{ref.color.neutral.0}" },
-      "raised": { "$type": "color", "$value": "{ref.color.neutral.0}" },
+      "canvas": { "$type": "color", "$value": "{ref.color.neutral.100}" },
+      "panel": { "$type": "color", "$value": "{ref.color.neutral.50}" },
+      "raised": { "$type": "color", "$value": "{ref.color.neutral.50}" },
       "scene": {
         "$description": "Primary content scene behind editors, terminals, and full-page work areas.",
         "$type": "color",
-        "$value": "{ref.color.neutral.0}"
+        "$value": "{ref.color.neutral.50}"
       },
       "workbench": {
         "$description": "Application workbench surrounding content scenes and panels.",
         "$type": "color",
-        "$value": "{color.action.quiet.hover}"
+        "$value": "{ref.color.neutral.150}"
       },
       "tertiary": {
         "$description": "Opaque low-emphasis container surface for persistent grouped content.",
         "$type": "color",
-        "$value": "{ref.color.neutral.75}"
+        "$value": "{ref.color.neutral.150}"
       },
       "chrome": {
         "$description": "Structural application chrome behind persistent navigation and window controls.",
         "$type": "color",
-        "$value": "{ref.color.neutral.70}"
+        "$value": "{ref.color.neutral.150}"
       },
       "subtle": {
         "$description": "Translucent local tint for transient feedback and small inset details; not a persistent container surface.",
         "$type": "color",
-        "$value": "rgba(16, 26, 39, 0.03)"
+        "$value": "rgba(42, 38, 34, 0.04)"
       }
     },
     "overlay": {
       "scrim": {
         "$description": "Backdrop veil behind blocking modal surfaces.",
         "$type": "color",
-        "$value": "rgba(16, 26, 39, 0.20)"
+        "$value": "rgba(42, 38, 34, 0.22)"
       }
     },
     "keyHint": {
@@ -78,15 +78,15 @@
       "background": { "$type": "color", "$value": "{color.action.neutral.surfaceHover}" }
     },
     "scrollbar": {
-      "thumb": { "$type": "color", "$value": "rgba(0, 0, 0, 0.20)" },
-      "thumbHover": { "$type": "color", "$value": "rgba(0, 0, 0, 0.30)" }
+      "thumb": { "$type": "color", "$value": "rgba(42, 38, 34, 0.22)" },
+      "thumbHover": { "$type": "color", "$value": "rgba(42, 38, 34, 0.32)" }
     },
     "content": {
-      "caption": { "$description": "Menu and navigation group captions; carries final opacity without attenuating primary text again.", "$type": "color", "$value": "rgba(0, 0, 0, 0.40)" },
-      "primary": { "$type": "color", "$value": "rgba(0, 0, 0, 0.80)" },
-      "secondary": { "$type": "color", "$value": "rgba(0, 0, 0, 0.60)" },
-      "muted": { "$type": "color", "$value": "{ref.color.neutral.650}" },
-      "disabled": { "$type": "color", "$value": "rgba(0, 0, 0, 0.30)" },
+      "caption": { "$description": "Menu and navigation group captions; carries final opacity without attenuating primary text again.", "$type": "color", "$value": "rgba(42, 38, 34, 0.68)" },
+      "primary": { "$type": "color", "$value": "rgba(42, 38, 34, 0.90)" },
+      "secondary": { "$type": "color", "$value": "rgba(42, 38, 34, 0.72)" },
+      "muted": { "$type": "color", "$value": "{ref.color.neutral.600}" },
+      "disabled": { "$type": "color", "$value": "rgba(42, 38, 34, 0.32)" },
       "inverse": { "$type": "color", "$value": "{ref.color.neutral.0}" },
       "onDark": {
         "$description": "Content that must remain legible on a known dark or image-backed surface.",
@@ -99,15 +99,15 @@
         "$value": "{ref.color.neutral.1000}"
       },
       "requiredIndicator": {
-        "$description": "Required-field marker content aligned with the shared highlight color, distinct from validation danger.",
+        "$description": "Required-field marker text, darkened to the seal-blue 600 step so it stays AA-legible on paper surfaces.",
         "$type": "color",
-        "$value": "{color.control.highlight.background}"
+        "$value": "{ref.color.cyan.600}"
       }
     },
     "accent": {
       "default": { "$type": "color", "$value": "{ref.color.cyan.500}" },
-      "hover": { "$type": "color", "$value": "{ref.color.cyan.500}" },
-      "disabled": { "$type": "color", "$value": "rgba(5, 156, 176, 0.30)" },
+      "hover": { "$type": "color", "$value": "{ref.color.cyan.600}" },
+      "disabled": { "$type": "color", "$value": "rgba(83, 125, 150, 0.32)" },
       "surfaceSubtle": { "$type": "color", "$value": "color-mix(in srgb, {color.accent.default} 5%, transparent)" },
       "surface": { "$type": "color", "$value": "color-mix(in srgb, {color.accent.default} 9%, transparent)" },
       "surfaceStrong": { "$type": "color", "$value": "color-mix(in srgb, {color.accent.default} 15%, transparent)" },
@@ -150,23 +150,23 @@
       }
     },
     "link": {
-      "default": { "$type": "color", "$value": "{ref.color.cyan.500}" },
-      "hover": { "$type": "color", "$value": "{ref.color.cyan.600}" }
+      "default": { "$type": "color", "$value": "{ref.color.cyan.600}" },
+      "hover": { "$type": "color", "$value": "{ref.color.cyan.700}" }
     },
     "border": {
-      "subtle": { "$type": "color", "$value": "rgba(16, 26, 39, 0.08)" },
-      "default": { "$type": "color", "$value": "rgba(16, 26, 39, 0.15)" },
-      "strong": { "$type": "color", "$value": "rgba(16, 26, 39, 0.34)" }
+      "subtle": { "$type": "color", "$value": "rgba(42, 38, 34, 0.10)" },
+      "default": { "$type": "color", "$value": "rgba(42, 38, 34, 0.18)" },
+      "strong": { "$type": "color", "$value": "rgba(42, 38, 34, 0.36)" }
     },
     "action": {
       "neutral": {
-        "border": { "$type": "color", "$value": "rgba(0, 0, 0, 0.05)" },
+        "border": { "$type": "color", "$value": "rgba(42, 38, 34, 0.06)" },
         "content": { "$type": "color", "$value": "{color.content.primary}" },
         "contentDisabled": { "$type": "color", "$value": "{color.content.disabled}" },
         "fillBorder": { "$type": "color", "$value": "{color.action.neutral.surface}" },
-        "surface": { "$type": "color", "$value": "rgba(0, 0, 0, 0.05)" },
-        "surfaceHover": { "$type": "color", "$value": "rgba(0, 0, 0, 0.08)" },
-        "surfacePressed": { "$type": "color", "$value": "rgba(0, 0, 0, 0.10)" }
+        "surface": { "$type": "color", "$value": "rgba(42, 38, 34, 0.06)" },
+        "surfaceHover": { "$type": "color", "$value": "rgba(42, 38, 34, 0.09)" },
+        "surfacePressed": { "$type": "color", "$value": "rgba(42, 38, 34, 0.12)" }
       },
       "primary": {
         "background": { "$type": "color", "$value": "{ref.color.navy.950}" },
@@ -175,14 +175,14 @@
         "content": { "$type": "color", "$value": "{ref.color.neutral.0}" }
       },
       "secondary": {
-        "background": { "$type": "color", "$value": "{ref.color.neutral.100}" },
-        "hover": { "$type": "color", "$value": "rgba(16, 26, 39, 0.09)" },
-        "pressed": { "$type": "color", "$value": "rgba(16, 26, 39, 0.13)" },
+        "background": { "$type": "color", "$value": "{ref.color.neutral.50}" },
+        "hover": { "$type": "color", "$value": "rgba(42, 38, 34, 0.10)" },
+        "pressed": { "$type": "color", "$value": "rgba(42, 38, 34, 0.14)" },
         "content": { "$type": "color", "$value": "{color.content.primary}" }
       },
       "quiet": {
-        "hover": { "$type": "color", "$value": "{ref.color.neutral.100}" },
-        "pressed": { "$type": "color", "$value": "rgba(16, 26, 39, 0.09)" },
+        "hover": { "$type": "color", "$value": "{ref.color.neutral.200}" },
+        "pressed": { "$type": "color", "$value": "rgba(42, 38, 34, 0.12)" },
         "content": { "$type": "color", "$value": "{color.content.secondary}" }
       }
     },
@@ -194,13 +194,13 @@
       }
     },
     "field": {
-      "groupBackground": { "$description": "Grouped form tint; independent of opaque tertiary containers and transient subtle feedback.", "$type": "color", "$value": "rgba(0, 0, 0, 0.03)" },
+      "groupBackground": { "$description": "Grouped form tint; independent of opaque tertiary containers and transient subtle feedback.", "$type": "color", "$value": "rgba(42, 38, 34, 0.04)" },
       "borderActive": { "$description": "Input and SearchField editing border, distinct from the stronger generic focus indicator used by other controls.", "$type": "color", "$value": "{color.field.borderHover}" },
-      "placeholder": { "$description": "Empty field hints and decorative adornments; distinct from general secondary prose.", "$type": "color", "$value": "rgba(0, 0, 0, 0.40)" },
-      "background": { "$type": "color", "$value": "{ref.color.neutral.0}" },
+      "placeholder": { "$description": "Empty field hints and decorative adornments; distinct from general secondary prose.", "$type": "color", "$value": "rgba(42, 38, 34, 0.68)" },
+      "background": { "$type": "color", "$value": "{ref.color.neutral.50}" },
       "backgroundHover": { "$type": "color", "$value": "{color.field.background}" },
-      "border": { "$type": "color", "$value": "rgba(0, 0, 0, 0.08)" },
-      "borderHover": { "$type": "color", "$value": "rgba(0, 0, 0, 0.20)" },
+      "border": { "$type": "color", "$value": "rgba(42, 38, 34, 0.12)" },
+      "borderHover": { "$type": "color", "$value": "rgba(42, 38, 34, 0.24)" },
       "borderFocus": { "$type": "color", "$value": "{ref.color.neutral.550}" }
     },
     "control": {
@@ -215,8 +215,8 @@
         "backgroundHover": { "$type": "color", "$value": "color-mix(in srgb, {color.control.highlight.background} 20%, transparent)" },
         "backgroundPressed": { "$type": "color", "$value": "color-mix(in srgb, {color.control.highlight.background} 30%, transparent)" },
         "content": { "$type": "color", "$value": "{color.action.neutral.content}" },
-        "contentHover": { "$type": "color", "$value": "{color.control.highlight.background}" },
-        "contentPressed": { "$type": "color", "$value": "{color.control.highlight.background}" },
+        "contentHover": { "$type": "color", "$value": "{ref.color.cyan.600}" },
+        "contentPressed": { "$type": "color", "$value": "{ref.color.cyan.600}" },
         "contentDisabled": { "$type": "color", "$value": "{color.action.neutral.contentDisabled}" }
       },
       "switch": {
@@ -226,7 +226,7 @@
       }
     },
     "focus": {
-      "ring": { "$type": "color", "$value": "{ref.color.neutral.650}" }
+      "ring": { "$type": "color", "$value": "{ref.color.cyan.600}" }
     },
     "codeChange": {
       "$description": "Stable code-change accents shared by diff lines and compact addition/deletion counts.",
@@ -251,16 +251,16 @@
         "word": { "$type": "color", "$value": "{ref.color.red.150}" }
       },
       "syntax": {
-        "comment": { "$type": "color", "$value": "{ref.color.neutral.550}" },
+        "comment": { "$type": "color", "$value": "{ref.color.neutral.600}" },
         "punctuation": { "$type": "color", "$value": "{ref.color.neutral.600}" },
         "keyword": { "$type": "color", "$value": "{ref.color.pink.550}" },
-        "declaration": { "$type": "color", "$value": "{ref.color.purple.475}" },
+        "declaration": { "$type": "color", "$value": "{ref.color.purple.500}" },
         "function": { "$type": "color", "$value": "{ref.color.purple.650}" },
         "string": { "$type": "color", "$value": "{ref.color.green.625}" },
-        "number": { "$type": "color", "$value": "{ref.color.cyan.475}" },
+        "number": { "$type": "color", "$value": "{ref.color.cyan.600}" },
         "property": { "$type": "color", "$value": "{ref.color.amber.625}" },
-        "variable": { "$type": "color", "$value": "{ref.color.amber.525}" },
-        "operator": { "$type": "color", "$value": "{ref.color.cyan.425}" }
+        "variable": { "$type": "color", "$value": "{ref.color.amber.600}" },
+        "operator": { "$type": "color", "$value": "{ref.color.cyan.700}" }
       }
     },
     "status": {
@@ -281,7 +281,7 @@
         "emphasis": {
           "$description": "Short warning-state emphasis using the product orange anchor; use warning content for longer text.",
           "$type": "color",
-          "$value": "{ref.color.amber.550}"
+          "$value": "{ref.color.amber.625}"
         },
         "surface": { "$type": "color", "$value": "color-mix(in srgb, {color.status.warning.emphasis} 10%, transparent)" },
         "border": { "$type": "color", "$value": "color-mix(in srgb, {color.status.warning.emphasis} 30%, transparent)" }
@@ -296,18 +296,18 @@
   },
   "shadow": {
     "$type": "shadow",
-    "xs": { "$value": "0 1px 2px rgba(16, 26, 39, 0.04)" },
-    "sm": { "$value": "0 2px 4px rgba(16, 26, 39, 0.055)" },
-    "base": { "$value": "0 4px 8px rgba(16, 26, 39, 0.07)" },
-    "lg": { "$value": "0 8px 16px rgba(16, 26, 39, 0.09)" },
-    "xl": { "$value": "0 12px 24px rgba(16, 26, 39, 0.11)" },
+    "xs": { "$value": "0 1px 2px rgba(42, 38, 34, 0.05)" },
+    "sm": { "$value": "0 2px 4px rgba(42, 38, 34, 0.06)" },
+    "base": { "$value": "0 4px 8px rgba(42, 38, 34, 0.08)" },
+    "lg": { "$value": "0 8px 16px rgba(42, 38, 34, 0.10)" },
+    "xl": { "$value": "0 12px 24px rgba(42, 38, 34, 0.12)" },
     "raised": { "$value": "{shadow.sm}" },
-    "composer": { "$value": "0 2px 12px rgba(0, 0, 0, 0.08)" },
-    "menu": { "$value": "0 4px 20px rgba(0, 0, 0, 0.12)" },
-    "overlay": { "$value": "0 4px 20px rgba(0, 0, 0, 0.12)" },
+    "composer": { "$value": "0 2px 12px rgba(42, 38, 34, 0.08)" },
+    "menu": { "$value": "0 4px 20px rgba(42, 38, 34, 0.12)" },
+    "overlay": { "$value": "0 4px 20px rgba(42, 38, 34, 0.12)" },
     "accentGlow": {
       "$description": "Layered emphasis glow derived from the active accent.",
-      "$value": "0 12px 32px color-mix(in srgb, {color.accent.hover} 25%, transparent), 0 6px 16px color-mix(in srgb, {color.accent.default} 18%, transparent), 0 3px 8px rgba(0, 0, 0, 0.12)"
+      "$value": "0 12px 32px color-mix(in srgb, {color.accent.hover} 25%, transparent), 0 6px 16px color-mix(in srgb, {color.accent.default} 18%, transparent), 0 3px 8px rgba(42, 38, 34, 0.12)"
     },
     "innerHighlight": { "$value": "inset 0 1px 0 rgba(255, 255, 255, 0.08)" },
     "innerHighlightHover": { "$value": "inset 0 1px 0 rgba(255, 255, 255, 0.24)" }

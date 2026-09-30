@@ -4,8 +4,8 @@
     "button": {
       "$description": "Button-specific state colors. Keep shared action colors stable for other controls and preserve contrast-mode feedback.",
       "content": { "$type": "color", "$value": "{color.action.neutral.content}" },
-      "textContent": { "$type": "color", "$value": "{color.accent.default}" },
-      "textContentHover": { "$type": "color", "$value": "{color.accent.hover}" },
+      "textContent": { "$type": "color", "$value": "{ref.color.cyan.300}" },
+      "textContentHover": { "$type": "color", "$value": "{ref.color.cyan.200}" },
       "textContentDisabled": { "$type": "color", "$value": "{color.accent.disabled}" },
       "outlineBorder": { "$type": "color", "$value": "{color.action.neutral.border}" },
       "outlineBorderInteractive": { "$type": "color", "$value": "{color.action.neutral.border}" },

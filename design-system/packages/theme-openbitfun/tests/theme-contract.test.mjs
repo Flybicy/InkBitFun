@@ -102,31 +102,41 @@ test("reference colors retain the global-search action identity anchors", () => 
   const valueAt = (scale, step) => referenceColorScales[scale]
     .find((entry) => entry.step === step)?.value;
 
-  assert.equal(valueAt("red", 650), "#ec221f");
-  assert.equal(valueAt("amber", 550), "#ff8c00");
-  assert.equal(valueAt("cyan", 500), "#059cb0");
-  assert.equal(valueAt("blue", 575), "#3271d7");
-  assert.equal(valueAt("purple", 450), "#9e54ff");
+  assert.equal(valueAt("red", 650), "#6b2315");
+  assert.equal(valueAt("amber", 550), "#8f712a");
+  assert.equal(valueAt("cyan", 500), "#537d96");
+  assert.equal(valueAt("blue", 575), "#3f5878");
+  assert.equal(valueAt("purple", 450), "#7a6c99");
 });
+
+// 书墨印章: paper modes keep the deep 墨绿/深朱 anchors, ink modes lift them so diff
+// text stays AA-legible on the dark canvas (see the AA sweep in the work log).
+const codeChangeAnchors = {
+  light: ["#3F5C3F", "#6B2315"],
+  dark: ["#6B8A69", "#C98173"],
+  highContrastLight: ["#3F5C3F", "#6B2315"],
+  highContrastDark: ["#6B8A69", "#C98173"],
+};
 
 test("code-change semantics retain the requested addition and removal accents", () => {
   for (const mode of themeModes) {
-    assert.equal(themes[mode]["color.codeChange.added"], "#1aa73e");
-    assert.equal(themes[mode]["color.codeChange.removed"], "#ec221f");
+    const [added, removed] = codeChangeAnchors[mode];
+    assert.equal(themes[mode]["color.codeChange.added"], added);
+    assert.equal(themes[mode]["color.codeChange.removed"], removed);
   }
 });
 
 test("read-only diffs own reference colors without changing status semantics", () => {
   const light = themes.light;
-  assert.equal(light["color.codeDiff.added.marker"], "#00cab1");
-  assert.equal(light["color.codeDiff.removed.marker"], "#ff2e3f");
-  assert.equal(light["color.codeDiff.added.line"], "#eaf9f5");
-  assert.equal(light["color.codeDiff.removed.line"], "#ffeae6");
-  assert.equal(light["color.codeDiff.added.word"], "#c7f2eb");
-  assert.equal(light["color.codeDiff.removed.word"], "#ffcecd");
-  assert.equal(light["color.codeDiff.syntax.keyword"], "#fc2b73");
-  assert.equal(light["color.codeDiff.syntax.declaration"], "#c635e4");
-  assert.equal(light["color.codeDiff.syntax.function"], "#7b43f8");
+  assert.equal(light["color.codeDiff.added.marker"], "#5B7A59");
+  assert.equal(light["color.codeDiff.removed.marker"], "#A94838");
+  assert.equal(light["color.codeDiff.added.line"], "#ECF1EA");
+  assert.equal(light["color.codeDiff.removed.line"], "#F5E7E3");
+  assert.equal(light["color.codeDiff.added.word"], "#CBD8C6");
+  assert.equal(light["color.codeDiff.removed.word"], "#E7C2BB");
+  assert.equal(light["color.codeDiff.syntax.keyword"], "#9A5460");
+  assert.equal(light["color.codeDiff.syntax.declaration"], "#695E88");
+  assert.equal(light["color.codeDiff.syntax.function"], "#4A4063");
   for (const mode of themeModes) {
     const values = themes[mode];
     for (const side of ["added", "removed"]) {
@@ -156,9 +166,16 @@ test("status families derive from the code-change and product emphasis anchors",
   assert.equal(updated["color.status.success.content"].sourceValue, source.color.status.success.content.$value);
 });
 
-test("warning emphasis retains the product orange anchor in every theme", () => {
+const warningEmphasisAnchors = {
+  light: "#755B22",
+  dark: "#A68235",
+  highContrastLight: "#755B22",
+  highContrastDark: "#A68235",
+};
+
+test("warning emphasis retains the product ochre anchor in every theme", () => {
   for (const mode of themeModes) {
-    assert.equal(themes[mode]["color.status.warning.emphasis"], "#ff8c00");
+    assert.equal(themes[mode]["color.status.warning.emphasis"], warningEmphasisAnchors[mode]);
   }
 });
 
@@ -257,10 +274,15 @@ test("text, action, and field focus pairs meet their contrast requirements", () 
       ) >= 4.5,
       `${mode} control highlight contrast fell below 4.5:1`,
     );
-    assert.equal(
-      variant["color.content.requiredIndicator"].value,
-      variant["color.control.highlight.background"].value,
-      `${mode} required indicator must follow the shared highlight`,
+    // 书墨印章: the marker is text (asterisks), so it must clear 4.5:1 on the canvas
+    // instead of blindly copying the highlight fill colour.
+    assert.ok(
+      contrastRatio(
+        variant["color.surface.canvas"].value,
+        variant["color.content.requiredIndicator"].value,
+        backdrop,
+      ) >= 4.5,
+      `${mode} required indicator contrast fell below 4.5:1`,
     );
     for (const status of ["info", "success", "warning", "danger"]) {
       const minimumContrast = 4.5;
@@ -278,20 +300,36 @@ test("text, action, and field focus pairs meet their contrast requirements", () 
 
 test("Button states have a mode-complete palette independent from shared actions", () => {
   const light = themes.light;
-  assert.equal(light["component.button.outlineBorder"], "rgba(0, 0, 0, 0.08)");
+  assert.equal(light["component.button.outlineBorder"], "rgba(42, 38, 34, 0.09)");
   assert.equal(
     light["component.button.outlineBorderInteractive"],
     light["component.button.outlineBorder"],
   );
   for (const suffix of ["", "Hover", "Pressed"]) {
-    assert.equal(light[`component.button.fillBackground${suffix}`], "rgba(0, 0, 0, 0.08)");
+    assert.equal(light[`component.button.fillBackground${suffix}`], "rgba(42, 38, 34, 0.09)");
   }
-  assert.equal(light["component.button.primaryBackground"], "rgba(0, 0, 0, 0.80)");
-  assert.equal(light["component.button.primaryBackgroundHover"], "rgba(0, 0, 0, 0.60)");
-  assert.equal(light["component.button.primaryBackgroundPressed"], "rgba(0, 0, 0, 0.90)");
-  assert.equal(light["component.button.primaryContentDisabled"], "rgba(0, 0, 0, 0.20)");
-  assert.equal(light["component.button.textContent"], "#059cb0");
-  assert.equal(light["component.button.textContentDisabled"], "rgba(5, 156, 176, 0.30)");
+  assert.equal(light["component.button.primaryBackground"], "rgba(20, 17, 14, 0.92)");
+  assert.equal(light["component.button.primaryBackgroundHover"], "rgba(42, 38, 34, 0.72)");
+  assert.equal(light["component.button.primaryBackgroundPressed"], "rgba(20, 17, 14, 1)");
+  assert.equal(light["component.button.primaryContentDisabled"], "rgba(255, 253, 248, 0.35)");
+  assert.equal(light["component.button.textContent"], "#3F6179");
+  assert.equal(light["component.button.textContentDisabled"], "rgba(83, 125, 150, 0.32)");
+  for (const [mode, values] of Object.entries(themes)) {
+    assert.notEqual(
+      values["component.button.textContent"],
+      values["component.button.textContentHover"],
+      `${mode} text button hover must stay a distinct step`,
+    );
+    assert.equal(
+      values["component.button.textContent"],
+      values["color.link.default"],
+      `${mode} text button labels share the link accent step`,
+    );
+    assert.equal(
+      values["component.button.textContentHover"],
+      values["color.link.hover"],
+    );
+  }
   const names = Object.keys(light).filter(name => name.startsWith("component.button."));
   for (const [mode, values] of Object.entries(themes)) {
     assert.deepEqual(Object.keys(values).filter(name => name.startsWith("component.button.")), names);
@@ -303,103 +341,103 @@ test("Button states have a mode-complete palette independent from shared actions
 });
 
 test("Empty artwork uses a mode-complete opaque component color", () => {
-  assert.equal(themes.light["component.empty.media"], "color-mix(in srgb, #6a6a6a 35%, #f7f7f7)");
-  assert.equal(themes.dark["component.empty.media"], "color-mix(in srgb, #858585 35%, #0e0e10)");
+  assert.equal(themes.light["component.empty.media"], "color-mix(in srgb, #6B6158 35%, #EFE8DB)");
+  assert.equal(themes.dark["component.empty.media"], "color-mix(in srgb, #A1927F 35%, #0D0B09)");
   for (const values of Object.values(themes)) {
     assert.match(values["component.empty.media"], /^color-mix\(in srgb, #[0-9a-f]{6} 35%, #[0-9a-f]{6}\)$/i);
   }
 });
 
 test("default modes preserve the built-in Appearance anchor values", () => {
-  assert.equal(themes.light["color.surface.canvas"], "#fdfdfd");
-  assert.equal(themes.light["color.content.primary"], "rgba(0, 0, 0, 0.80)");
-  assert.equal(themes.light["color.content.secondary"], "rgba(0, 0, 0, 0.60)");
-  assert.equal(themes.light["color.content.disabled"], "rgba(0, 0, 0, 0.30)");
-  assert.equal(themes.light["color.action.primary.background"], "#101a27");
-  assert.equal(themes.light["color.action.neutral.border"], "rgba(0, 0, 0, 0.05)");
-  assert.equal(themes.light["color.action.neutral.content"], "rgba(0, 0, 0, 0.80)");
-  assert.equal(themes.light["color.action.neutral.contentDisabled"], "rgba(0, 0, 0, 0.30)");
-  assert.equal(themes.light["color.action.secondary.content"], "rgba(0, 0, 0, 0.80)");
-  assert.equal(themes.light["color.action.quiet.content"], "rgba(0, 0, 0, 0.60)");
-  assert.equal(themes.light["color.action.neutral.surface"], "rgba(0, 0, 0, 0.05)");
-  assert.equal(themes.light["color.action.neutral.surfaceHover"], "rgba(0, 0, 0, 0.08)");
-  assert.equal(themes.light["color.action.neutral.surfacePressed"], "rgba(0, 0, 0, 0.10)");
-  assert.equal(themes.light["color.selection.surface"], "rgba(0, 0, 0, 0.08)");
-  assert.equal(themes.light["color.surface.chrome"], "#f8f8f9");
-  assert.equal(themes.light["color.surface.tertiary"], "#f7f7f7");
-  assert.equal(themes.light["color.scrollbar.thumb"], "rgba(0, 0, 0, 0.20)");
-  assert.equal(themes.light["color.scrollbar.thumbHover"], "rgba(0, 0, 0, 0.30)");
-  assert.equal(themes.light["color.keyHint.background"], "rgba(0, 0, 0, 0.08)");
-  assert.equal(themes.light["color.control.highlight.background"], "#059cb0");
+  assert.equal(themes.light["color.surface.canvas"], "#F5EFE4");
+  assert.equal(themes.light["color.content.primary"], "rgba(42, 38, 34, 0.90)");
+  assert.equal(themes.light["color.content.secondary"], "rgba(42, 38, 34, 0.72)");
+  assert.equal(themes.light["color.content.disabled"], "rgba(42, 38, 34, 0.32)");
+  assert.equal(themes.light["color.action.primary.background"], "#14110E");
+  assert.equal(themes.light["color.action.neutral.border"], "rgba(42, 38, 34, 0.06)");
+  assert.equal(themes.light["color.action.neutral.content"], "rgba(42, 38, 34, 0.90)");
+  assert.equal(themes.light["color.action.neutral.contentDisabled"], "rgba(42, 38, 34, 0.32)");
+  assert.equal(themes.light["color.action.secondary.content"], "rgba(42, 38, 34, 0.90)");
+  assert.equal(themes.light["color.action.quiet.content"], "rgba(42, 38, 34, 0.72)");
+  assert.equal(themes.light["color.action.neutral.surface"], "rgba(42, 38, 34, 0.06)");
+  assert.equal(themes.light["color.action.neutral.surfaceHover"], "rgba(42, 38, 34, 0.09)");
+  assert.equal(themes.light["color.action.neutral.surfacePressed"], "rgba(42, 38, 34, 0.12)");
+  assert.equal(themes.light["color.selection.surface"], "rgba(42, 38, 34, 0.09)");
+  assert.equal(themes.light["color.surface.chrome"], "#EFE8DB");
+  assert.equal(themes.light["color.surface.tertiary"], "#EFE8DB");
+  assert.equal(themes.light["color.scrollbar.thumb"], "rgba(42, 38, 34, 0.22)");
+  assert.equal(themes.light["color.scrollbar.thumbHover"], "rgba(42, 38, 34, 0.32)");
+  assert.equal(themes.light["color.keyHint.background"], "rgba(42, 38, 34, 0.09)");
+  assert.equal(themes.light["color.control.highlight.background"], "#537D96");
   assert.equal(themes.light["color.control.highlight.content"], "#000000");
-  assert.equal(themes.light["color.content.requiredIndicator"], "#059cb0");
-  assert.equal(themes.light["color.control.launcher.background"], "rgba(0, 0, 0, 0.08)");
+  assert.equal(themes.light["color.content.requiredIndicator"], "#3F6179");
+  assert.equal(themes.light["color.control.launcher.background"], "rgba(42, 38, 34, 0.09)");
   assert.equal(
     themes.light["color.control.launcher.backgroundHover"],
-    "color-mix(in srgb, #059cb0 20%, transparent)",
+    "color-mix(in srgb, #537D96 20%, transparent)",
   );
   assert.equal(
     themes.light["color.control.launcher.backgroundPressed"],
-    "color-mix(in srgb, #059cb0 30%, transparent)",
+    "color-mix(in srgb, #537D96 30%, transparent)",
   );
-  assert.equal(themes.light["color.control.launcher.content"], "rgba(0, 0, 0, 0.80)");
-  assert.equal(themes.light["color.control.launcher.contentHover"], "#059cb0");
-  assert.equal(themes.light["color.control.launcher.contentPressed"], "#059cb0");
-  assert.equal(themes.light["color.control.switch.track"], "rgba(0, 0, 0, 0.10)");
-  assert.equal(themes.light["color.control.switch.trackChecked"], "#059cb0");
-  assert.equal(themes.light["color.control.switch.thumb"], "#ffffff");
-  assert.equal(themes.light["color.identity.harness.minimal"], "#b434ef");
-  assert.equal(themes.light["color.identity.harness.standard"], "#1aa73e");
-  assert.equal(themes.light["color.identity.harness.ultimate"], "#ff8c00");
-  assert.equal(themes.light["color.identity.harness.creative"], "#2e7eff");
-  assert.equal(themes.light["color.identity.globalSearch.newSession"], "#ec221f");
-  assert.equal(themes.light["color.identity.globalSearch.openBrowser"], "#ff8c00");
-  assert.equal(themes.light["color.identity.globalSearch.openTerminal"], "rgba(0, 0, 0, 0.80)");
-  assert.equal(themes.light["color.identity.globalSearch.openProject"], "#059cb0");
-  assert.equal(themes.light["color.identity.globalSearch.newProject"], "#3271d7");
-  assert.equal(themes.light["color.identity.globalSearch.openFiles"], "#9e54ff");
-  assert.equal(themes.light["color.status.warning.surface"], "rgba(255, 140, 0, 0.1)");
-  assert.equal(themes.light["shadow.base"], "0 4px 8px rgba(16, 26, 39, 0.07)");
-  assert.equal(themes.light["shadow.composer"], "0 2px 12px rgba(0, 0, 0, 0.08)");
-  assert.equal(themes.light["shadow.menu"], "0 4px 20px rgba(0, 0, 0, 0.12)");
-  assert.equal(themes.light["shadow.overlay"], "0 4px 20px rgba(0, 0, 0, 0.12)");
+  assert.equal(themes.light["color.control.launcher.content"], "rgba(42, 38, 34, 0.90)");
+  assert.equal(themes.light["color.control.launcher.contentHover"], "#3F6179");
+  assert.equal(themes.light["color.control.launcher.contentPressed"], "#3F6179");
+  assert.equal(themes.light["color.control.switch.track"], "rgba(42, 38, 34, 0.12)");
+  assert.equal(themes.light["color.control.switch.trackChecked"], "#537D96");
+  assert.equal(themes.light["color.control.switch.thumb"], "#FFFDF8");
+  assert.equal(themes.light["color.identity.harness.minimal"], "#5F547C");
+  assert.equal(themes.light["color.identity.harness.standard"], "#3F5C3F");
+  assert.equal(themes.light["color.identity.harness.ultimate"], "#8F712A");
+  assert.equal(themes.light["color.identity.harness.creative"], "#47617F");
+  assert.equal(themes.light["color.identity.globalSearch.newSession"], "#6B2315");
+  assert.equal(themes.light["color.identity.globalSearch.openBrowser"], "#8F712A");
+  assert.equal(themes.light["color.identity.globalSearch.openTerminal"], "rgba(42, 38, 34, 0.90)");
+  assert.equal(themes.light["color.identity.globalSearch.openProject"], "#537D96");
+  assert.equal(themes.light["color.identity.globalSearch.newProject"], "#3F5878");
+  assert.equal(themes.light["color.identity.globalSearch.openFiles"], "#7A6C99");
+  assert.equal(themes.light["color.status.warning.surface"], "rgba(117, 91, 34, 0.1)");
+  assert.equal(themes.light["shadow.base"], "0 4px 8px rgba(42, 38, 34, 0.08)");
+  assert.equal(themes.light["shadow.composer"], "0 2px 12px rgba(42, 38, 34, 0.08)");
+  assert.equal(themes.light["shadow.menu"], "0 4px 20px rgba(42, 38, 34, 0.12)");
+  assert.equal(themes.light["shadow.overlay"], "0 4px 20px rgba(42, 38, 34, 0.12)");
   assert.equal(themes.light["opacity.disabled"], 0.55);
-  assert.equal(themes.dark["color.surface.canvas"], "#0e0e10");
-  assert.equal(themes.dark["color.content.primary"], "#e8e8e8");
-  assert.equal(themes.dark["color.keyHint.background"], "rgba(255, 255, 255, 0.1)");
-  assert.equal(themes.dark["color.action.primary.background"], "rgba(255, 255, 255, 0.16)");
-  assert.equal(themes.dark["color.action.neutral.surface"], "rgba(255, 255, 255, 0.1)");
-  assert.equal(themes.dark["color.control.highlight.background"], "#059cb0");
+  assert.equal(themes.dark["color.surface.canvas"], "#0D0B09");
+  assert.equal(themes.dark["color.content.primary"], "#E9E1D1");
+  assert.equal(themes.dark["color.keyHint.background"], "rgba(240, 232, 216, 0.08)");
+  assert.equal(themes.dark["color.action.primary.background"], "rgba(240, 232, 216, 0.14)");
+  assert.equal(themes.dark["color.action.neutral.surface"], "rgba(240, 232, 216, 0.08)");
+  assert.equal(themes.dark["color.control.highlight.background"], "#537D96");
   assert.equal(themes.dark["color.control.highlight.content"], "#000000");
-  assert.equal(themes.dark["color.content.requiredIndicator"], "#059cb0");
-  assert.equal(themes.dark["color.control.launcher.background"], "rgba(255, 255, 255, 0.15)");
+  assert.equal(themes.dark["color.content.requiredIndicator"], "#6489A0");
+  assert.equal(themes.dark["color.control.launcher.background"], "rgba(240, 232, 216, 0.14)");
   assert.equal(
     themes.dark["color.control.launcher.backgroundHover"],
-    "color-mix(in srgb, #059cb0 20%, transparent)",
+    "color-mix(in srgb, #537D96 20%, transparent)",
   );
   assert.equal(
     themes.dark["color.control.launcher.backgroundPressed"],
-    "color-mix(in srgb, #059cb0 30%, transparent)",
+    "color-mix(in srgb, #537D96 30%, transparent)",
   );
-  assert.equal(themes.dark["color.control.launcher.contentHover"], "#059cb0");
-  assert.equal(themes.dark["color.control.launcher.contentPressed"], "#059cb0");
-  assert.equal(themes.dark["color.control.switch.trackChecked"], "#059cb0");
-  assert.equal(themes.dark["color.identity.harness.minimal"], "#b434ef");
-  assert.equal(themes.dark["color.identity.harness.standard"], "#1aa73e");
-  assert.equal(themes.dark["color.identity.harness.ultimate"], "#ff8c00");
-  assert.equal(themes.dark["color.identity.harness.creative"], "#2e7eff");
-  assert.equal(themes.dark["color.identity.globalSearch.newSession"], "#ec221f");
-  assert.equal(themes.dark["color.identity.globalSearch.openBrowser"], "#ff8c00");
-  assert.equal(themes.dark["color.identity.globalSearch.openTerminal"], "#b0b0b0");
-  assert.equal(themes.dark["color.identity.globalSearch.openProject"], "#059cb0");
-  assert.equal(themes.dark["color.identity.globalSearch.newProject"], "#3271d7");
-  assert.equal(themes.dark["color.identity.globalSearch.openFiles"], "#9e54ff");
-  assert.equal(themes.dark["color.scrollbar.thumb"], "rgba(255, 255, 255, 0.20)");
-  assert.equal(themes.dark["color.scrollbar.thumbHover"], "rgba(255, 255, 255, 0.30)");
-  assert.equal(themes.dark["shadow.base"], "0 4px 8px rgba(0, 0, 0, 0.7)");
-  assert.equal(themes.dark["shadow.composer"], "0 2px 6px rgba(0, 0, 0, 0.32)");
-  assert.equal(themes.dark["shadow.menu"], "0 4px 10px rgba(0, 0, 0, 0.48)");
-  assert.equal(themes.dark["shadow.overlay"], "0 4px 20px rgba(0, 0, 0, 0.48)");
+  assert.equal(themes.dark["color.control.launcher.contentHover"], "#93B0BD");
+  assert.equal(themes.dark["color.control.launcher.contentPressed"], "#93B0BD");
+  assert.equal(themes.dark["color.control.switch.trackChecked"], "#537D96");
+  assert.equal(themes.dark["color.identity.harness.minimal"], "#5F547C");
+  assert.equal(themes.dark["color.identity.harness.standard"], "#3F5C3F");
+  assert.equal(themes.dark["color.identity.harness.ultimate"], "#8F712A");
+  assert.equal(themes.dark["color.identity.harness.creative"], "#6C87A3");
+  assert.equal(themes.dark["color.identity.globalSearch.newSession"], "#6B2315");
+  assert.equal(themes.dark["color.identity.globalSearch.openBrowser"], "#8F712A");
+  assert.equal(themes.dark["color.identity.globalSearch.openTerminal"], "#C6BBA7");
+  assert.equal(themes.dark["color.identity.globalSearch.openProject"], "#537D96");
+  assert.equal(themes.dark["color.identity.globalSearch.newProject"], "#3F5878");
+  assert.equal(themes.dark["color.identity.globalSearch.openFiles"], "#7A6C99");
+  assert.equal(themes.dark["color.scrollbar.thumb"], "rgba(240, 232, 216, 0.22)");
+  assert.equal(themes.dark["color.scrollbar.thumbHover"], "rgba(240, 232, 216, 0.32)");
+  assert.equal(themes.dark["shadow.base"], "0 4px 8px rgba(13, 11, 9, 0.7)");
+  assert.equal(themes.dark["shadow.composer"], "0 2px 6px rgba(13, 11, 9, 0.32)");
+  assert.equal(themes.dark["shadow.menu"], "0 4px 10px rgba(13, 11, 9, 0.48)");
+  assert.equal(themes.dark["shadow.overlay"], "0 4px 20px rgba(13, 11, 9, 0.48)");
   assert.equal(themes.dark["opacity.disabled"], 0.6);
 });
 
