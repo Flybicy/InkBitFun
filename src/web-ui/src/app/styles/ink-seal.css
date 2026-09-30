@@ -8,7 +8,7 @@
  *
  * Three deliberate moves, all derived from existing tokens rather than raw
  * literals so the colour governance audit keeps passing:
- *   1. a serif display stack for headings and display sizes,
+ *   1. a crisp sans display face for headings and display sizes,
  *   2. a squarer radius scale (the reference aesthetic runs 2/3/4px corners),
  *   3. a paper-fibre wash on the app canvas.
  */
@@ -17,13 +17,13 @@
   :where([data-openbitfun-design-system-root]),
   :where([data-openbitfun-design-system-root][data-color-scheme="dark"]) {
     /*
-     * The serif display face. The design system ships no serif profile, so the
-     * stack itself is declared once in the build-owned font-profile root
-     * (src/web-ui/src/font-profiles/ink-seal-serif.css) and is aliased here into
+     * The display face. The design system ships no display profile, so the stack
+     * itself is declared once in the build-owned font-profile root
+     * (src/web-ui/src/font-profiles/ink-seal-display.css) and is aliased here into
      * a private token: every consumer below then reads a canonical
      * var(--_...) reference instead of repeating the foundation stack.
      */
-    /* typography-audit: allow -- the ink/seal display face is the design system's only serif role and has no semantic --openbitfun-type-* ancestor. */
+    /* typography-audit: allow -- the ink/seal display face is the design system's only display role and has no semantic --openbitfun-type-* ancestor. */
     --_ink-seal-display: var(--openbitfun-font-family-display);
 
     --openbitfun-type-display-sm-font-family: var(--_ink-seal-display);

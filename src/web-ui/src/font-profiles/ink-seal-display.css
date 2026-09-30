@@ -1,0 +1,31 @@
+/*
+ * Ink/seal display face (shu mo yin zhang).
+ *
+ * The design system ships no display face of its own, and the governance audit
+ * only permits a raw font stack inside this font-profile root, so the stack is
+ * declared here once and consumed through --openbitfun-font-family-display by
+ * src/app/styles/ink-seal.css.
+ *
+ * The serif detour is over: large CJK type reads as crisp rather than decorative
+ * in a modern sans, and one now carries the whole product so headings and body
+ * copy stay in the same voice. MiSans leads because that is the kind of face the
+ * product is aiming at -- a locally installed MiSans copy is picked up without
+ * shipping a binary and without touching the font bundle. Everything else then
+ * lands on a face the build already owns: HarmonyOS Sans SC on Windows and Linux
+ * through the harmony-bundled profile, PingFang SC on macOS through the
+ * apple-system profile, and Microsoft YaHei UI on Windows without a bundled
+ * profile.
+ *
+ * Local faces only: no binary font asset is added, so the web-font profile
+ * bundle verification (scripts/web-font-profile.mjs) is untouched.
+ */
+
+@layer openbitfun.tokens.system {
+  :where([data-openbitfun-design-system-root]) {
+    --openbitfun-font-family-display:
+      "MiSans",
+      "OpenBitFun HarmonyOS Sans SC", "OpenBitFun HarmonyOS Sans",
+      "PingFang SC", "Microsoft YaHei UI", "Segoe UI",
+      system-ui, sans-serif;
+  }
+}
