@@ -105,8 +105,8 @@ describe('renderer appearance contracts', () => {
 
     expect(() => adapter.attachMonaco(monaco)).not.toThrow();
     expect(defineTheme).toHaveBeenCalledOnce();
-    expect(receivedTheme?.colors['editor.foreground']).toBe('#333333');
-    expect(receivedTheme?.colors['editor.selectionBackground']).toBe('#101a2724');
+    expect(receivedTheme?.colors['editor.foreground']).toBe('#3f3c38');
+    expect(receivedTheme?.colors['editor.selectionBackground']).toBe('#14110e24');
   });
 });
 
