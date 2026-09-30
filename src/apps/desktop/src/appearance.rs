@@ -29,7 +29,6 @@ const STARTUP_APPEARANCE_BOOTSTRAP_JSON: &str =
 
 /// Windows 11 starts at build 22000. Earlier builds keep the native material
 /// disabled so the main window stays opaque.
-#[cfg(target_os = "windows")]
 const WINDOWS_11_BUILD_NUMBER: u32 = 22_000;
 
 /// Whether this platform composites the transparent window material smoothly.
@@ -48,14 +47,25 @@ pub(crate) fn supports_native_window_material() -> bool {
     false
 }
 
-#[cfg(target_os = "windows")]
-fn windows_supports_native_window_material() -> bool {
-    match windows_build_number() {
+/// Whether the reported Windows build composes the transparent window
+/// material: Windows 11 (build 22000 and later) composites the acrylic/sidebar
+/// backdrop on the GPU, while Windows 10 re-renders the blur through slow DWM
+/// composition on every window move, which makes dragging the main window feel
+/// janky. An unreadable build number must not silently change the window look,
+/// so the historical material path is kept in that case.
+///
+/// The registry read stays one thin wrapper away from this gate so the version
+/// boundary can be exercised without a real Windows host.
+fn windows_build_supports_material(build: Option<u32>) -> bool {
+    match build {
         Some(build) => build >= WINDOWS_11_BUILD_NUMBER,
-        // An unreadable build number must not silently change the window look:
-        // keep the historical material path in that case.
         None => true,
     }
+}
+
+#[cfg(target_os = "windows")]
+fn windows_supports_native_window_material() -> bool {
+    windows_build_supports_material(windows_build_number())
 }
 
 /// Reads `CurrentBuildNumber` from the registry, which reports the real OS
@@ -1257,5 +1267,45 @@ mod development_frontend_tests {
         assert!(development_frontend_url(None, "")
             .unwrap_err()
             .contains("build.devUrl"));
+    }
+}
+
+#[cfg(test)]
+mod window_material_tests {
+    use super::{windows_build_supports_material, WINDOWS_11_BUILD_NUMBER};
+    #[cfg(target_os = "windows")]
+    use super::{supports_native_window_material, windows_build_number};
+
+    #[test]
+    fn windows_10_builds_lose_the_native_window_material() {
+        // Windows 10 21H2 and the 22H2-era insider builds sit below the gate.
+        assert!(!windows_build_supports_material(Some(10_245)));
+        assert!(!windows_build_supports_material(Some(19_045)));
+    }
+
+    #[test]
+    fn windows_11_builds_keep_the_native_window_material() {
+        assert!(windows_build_supports_material(Some(WINDOWS_11_BUILD_NUMBER)));
+        assert!(windows_build_supports_material(Some(26_100)));
+    }
+
+    #[test]
+    fn an_unreadable_build_number_keeps_the_material() {
+        assert!(windows_build_supports_material(None));
+    }
+
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn the_registry_read_flows_through_the_build_gate() {
+        assert_eq!(
+            supports_native_window_material(),
+            windows_build_supports_material(windows_build_number()),
+        );
+    }
+
+    #[cfg(not(target_os = "windows"))]
+    #[test]
+    fn hosts_without_a_native_material_stay_opaque() {
+        assert_eq!(supports_native_window_material(), cfg!(target_os = "macos"));
     }
 }
