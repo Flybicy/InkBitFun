@@ -27,6 +27,90 @@ static STARTUP_APPEARANCE_BOOTSTRAP_MANIFEST: OnceLock<StartupAppearanceBootstra
 const STARTUP_APPEARANCE_BOOTSTRAP_JSON: &str =
     include_str!("generated/startup_appearance_bootstrap.json");
 
+/// Windows 11 starts at build 22000. Earlier builds keep the native material
+/// disabled so the main window stays opaque.
+#[cfg(target_os = "windows")]
+const WINDOWS_11_BUILD_NUMBER: u32 = 22_000;
+
+/// Whether this platform composites the transparent window material smoothly.
+///
+/// macOS always does. Windows 11 (build 22000 and later) composites the
+/// acrylic/sidebar backdrop on the GPU, while Windows 10 re-renders the blur
+/// through slow DWM composition on every window move, which makes dragging the
+/// main window feel janky. Linux has no such material.
+pub(crate) fn supports_native_window_material() -> bool {
+    if cfg!(target_os = "macos") {
+        return true;
+    }
+    if cfg!(target_os = "windows") {
+        return windows_supports_native_window_material();
+    }
+    false
+}
+
+#[cfg(target_os = "windows")]
+fn windows_supports_native_window_material() -> bool {
+    match windows_build_number() {
+        Some(build) => build >= WINDOWS_11_BUILD_NUMBER,
+        // An unreadable build number must not silently change the window look:
+        // keep the historical material path in that case.
+        None => true,
+    }
+}
+
+/// Reads `CurrentBuildNumber` from the registry, which reports the real OS
+/// build even when the Win32 version APIs are shimmed by the app manifest.
+#[cfg(target_os = "windows")]
+fn windows_build_number() -> Option<u32> {
+    use windows::Win32::Foundation::ERROR_SUCCESS;
+    use windows::Win32::System::Registry::{
+        RegCloseKey, RegOpenKeyExW, RegQueryValueExW, HKEY, HKEY_LOCAL_MACHINE, KEY_READ,
+        REG_VALUE_TYPE,
+    };
+    use windows::core::PCWSTR;
+
+    let subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion"
+        .encode_utf16()
+        .chain(std::iter::once(0))
+        .collect::<Vec<u16>>();
+    let value_name = "CurrentBuildNumber"
+        .encode_utf16()
+        .chain(std::iter::once(0))
+        .collect::<Vec<u16>>();
+
+    unsafe {
+        let mut key = HKEY::default();
+        if RegOpenKeyExW(
+            HKEY_LOCAL_MACHINE,
+            PCWSTR(subkey.as_ptr()),
+            None,
+            KEY_READ,
+            &mut key,
+        ) != ERROR_SUCCESS
+        {
+            return None;
+        }
+        let mut value_type = REG_VALUE_TYPE::default();
+        let mut data = [0u16; 16];
+        let mut data_len = std::mem::size_of_val(&data) as u32;
+        let query_result = RegQueryValueExW(
+            key,
+            PCWSTR(value_name.as_ptr()),
+            None,
+            Some(&mut value_type),
+            Some(data.as_mut_ptr().cast()),
+            Some(&mut data_len),
+        );
+        let _ = RegCloseKey(key);
+        if query_result != ERROR_SUCCESS || value_type != REG_SZ {
+            return None;
+        }
+        let chars = (data_len as usize / 2).min(data.len());
+        let text = String::from_utf16_lossy(&data[..chars]);
+        text.trim().trim_end_matches('\0').parse::<u32>().ok()
+    }
+}
+
 fn agent_companion_window_ops() -> &'static tokio::sync::Mutex<()> {
     AGENT_COMPANION_WINDOW_OPS.get_or_init(|| tokio::sync::Mutex::new(()))
 }
@@ -318,7 +402,10 @@ impl AppearanceConfig {
         let startup_locale_json =
             serde_json::to_string(&startup_locale).unwrap_or_else(|_| "\"zh-CN\"".to_string());
         let show_startup_window_controls = !cfg!(target_os = "macos");
-        let native_sidebar_material = cfg!(any(target_os = "windows", target_os = "macos"));
+        // The sidebar material needs a transparent window; on Windows 10 the
+        // acrylic backdrop makes window dragging janky, so the frontend paints
+        // an opaque sidebar instead.
+        let native_sidebar_material = supports_native_window_material();
         let startup_trace_id_json = serde_json::to_string(startup_trace_id)
             .unwrap_or_else(|_| "\"desktop-unknown\"".to_string());
         let bootstrap_log_level_json = serde_json::to_string(crate::logging::level_to_str(
@@ -619,8 +706,11 @@ pub fn create_main_window(
 
     // The webview must be transparent for the OS material to reach the sidebar.
     // Scene backgrounds and the startup tint remain owned by the frontend.
+    // Windows 10 composites the acrylic/sidebar backdrop through slow DWM blur,
+    // which makes dragging the window janky, so it keeps the opaque background
+    // configured above instead.
     #[cfg(any(target_os = "windows", target_os = "macos"))]
-    {
+    if supports_native_window_material() {
         builder = builder
             .transparent(true)
             .background_color(tauri::window::Color(0, 0, 0, 0))
