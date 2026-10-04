@@ -70,6 +70,16 @@ then run `pnpm --dir tests/e2e exec wdio run ./config/wdio.markdown-native.ts`
 from the repository root. This focused runner uses packaged frontend assets and
 a fresh temporary application profile; it does not use another checkout's dev server.
 
+For Windows live application-update discovery, reminder deferral and signed download completion,
+build the current frontend, then run `node tests/e2e/scripts/run-app-update.mjs --build`.
+The build uses the public verification key from `docs/verify-downloads.md`; the test
+requires a genuinely newer public release. `OPENBITFUN_E2E_FRONTEND_DIR` can select
+an independent build containing `frontend-revision.json`. The runner uses isolated
+application, updater-cache and WebView storage, downloads the real signed package,
+and never confirms installation. It retains `result.json` under its printed temporary
+directory. Only persisted reminder timestamps are aged to cover the 24-hour boundary;
+no network response, update store, package or system clock is mocked.
+
 For Gitee list filters and pagination against the public `dromara/sa-token`
 repository, build the desktop and current frontend, then run
 `pnpm --dir tests/e2e exec wdio run ./config/wdio.gitee-native.ts`.
