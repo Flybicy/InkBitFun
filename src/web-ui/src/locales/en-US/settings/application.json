@@ -47,12 +47,12 @@
         "description": "Midnight gray dark appearance - Professional and elegant, inspired by JetBrains IDE"
       },
       "openbitfun-china-style": {
-        "name": "Ink Charm",
-        "description": "Chinese style appearance - Rice paper and ink, blue and vermilion, warm and elegant"
+        "name": "Warm Paper",
+        "description": "Warm paper appearance - Soft ivory surfaces, muted ink text, and distant mountain blue"
       },
       "openbitfun-china-night": {
-        "name": "Ink Night",
-        "description": "Chinese dark appearance - Starlit ink night, moonlight like water, serene and elegant"
+        "name": "Aoi Night Contrast",
+        "description": "Aoi night high-contrast appearance - Deep teal night, bright rose accents, and clear blue links"
       },
       "openbitfun-cyber": {
         "name": "Cyber",

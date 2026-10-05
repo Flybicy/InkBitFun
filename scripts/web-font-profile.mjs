@@ -38,10 +38,9 @@ const FIRA_FONT_STEMS = Object.freeze([
 ]);
 
 /*
- * MiSans is Xiaomi's HyperOS display face. It rides the harmony-bundled profile
- * only, and only in the two weights the design system's display and heading
- * tokens ever request (600/700), so a portable build shows the intended display
- * face without carrying Xiaomi's whole family. The apple-system profile keeps
+ * MiSans is Xiaomi's HyperOS Simplified Chinese face. It rides the
+ * harmony-bundled profile as the body, control, and display face. The
+ * apple-system profile keeps
  * shipping no product text font at all and uses a locally installed MiSans.
  * The MiSans 字体知识产权许可协议 credits MiSans in the software and forbids
  * adapting a component or distributing the font software on its own, so these
@@ -49,6 +48,11 @@ const FIRA_FONT_STEMS = Object.freeze([
  * pinned here exactly like the HarmonyOS Sans sources below.
  */
 export const MISANS_FONT_ASSETS = Object.freeze([
+  {
+    relativePath: 'MiSans-Regular.woff2',
+    bytes: 4_858_624,
+    sha256: 'D704C1A932C0BD7E8A071D276CD81C0ED0C9FECFA26AC234F4BED0559FE1CB2D',
+  },
   {
     relativePath: 'MiSans-Semibold.woff2',
     bytes: 5_034_212,

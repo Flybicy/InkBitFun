@@ -44,14 +44,12 @@
 }
 
 /*
- * MiSans, Xiaomi's HyperOS display face, carries the ink/seal display role
- * (src/app/styles/ink-seal.css) on every non-Apple build, so headings read the
+ * MiSans, Xiaomi's HyperOS face, carries the Simplified Chinese body,
+ * control, and display roles on every non-Apple build.
  * same everywhere instead of falling back to whichever sans the platform picks.
- * The design system's display and heading tokens only ever request semibold and
- * bold, so exactly those two of Xiaomi's unmodified official WOFF2 exports are
- * carried -- 10.1 MB in total, against the 20.6 MB the CJK body face already
- * costs. A weight outside 600/700 falls through to the next family in the
- * display stack rather than shipping a synthesized blend.
+ * Regular covers body and control weights; Semibold and Bold preserve the
+ * display tokens. The three unmodified official WOFF2 exports total about
+ * 15.0 MB.
  *
  * The apple-system profile deliberately ships no product text font, so this
  * face is absent there and a locally installed MiSans wins instead.
@@ -59,6 +57,14 @@
  * THIRD_PARTY_NOTICES.md; the unmodified files are pinned by
  * scripts/web-font-profile.mjs.
  */
+
+@font-face {
+  font-family: "MiSans";
+  src: url("../assets/fonts/misans/MiSans-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+}
 @font-face {
   font-family: "MiSans";
   src: url("../assets/fonts/misans/MiSans-Semibold.woff2") format("woff2");
@@ -116,8 +122,8 @@
   }
 
   :where([data-openbitfun-design-system-root]):lang(zh-CN) {
-    --openbitfun-font-family-sans: "OpenBitFun HarmonyOS Sans SC", "OpenBitFun HarmonyOS Sans", system-ui, "Microsoft YaHei UI", sans-serif;
-    --openbitfun-font-family-control: "OpenBitFun HarmonyOS Sans SC", "OpenBitFun HarmonyOS Sans", system-ui, "Microsoft YaHei UI", sans-serif;
+    --openbitfun-font-family-sans: "MiSans", "OpenBitFun HarmonyOS Sans SC", "OpenBitFun HarmonyOS Sans", system-ui, "Microsoft YaHei UI", sans-serif;
+    --openbitfun-font-family-control: "MiSans", "OpenBitFun HarmonyOS Sans SC", "OpenBitFun HarmonyOS Sans", system-ui, "Microsoft YaHei UI", sans-serif;
   }
 
   /* Traditional Chinese deliberately follows the platform's localized face. */

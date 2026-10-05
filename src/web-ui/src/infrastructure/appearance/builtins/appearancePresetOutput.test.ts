@@ -476,12 +476,12 @@ describe('builtin appearance preset output', () => {
           "type": "dark",
         },
         {
-          "hash": "b48ff5817b5f2a451c30a6e0369fcce19853f1d8988a37ece0f9a7e3052a2d0d",
+          "hash": "c3b29471f8bf10eaddff014b98288fa4a4d46e0f3fb880cc9247a465bfcbc09f",
           "id": "openbitfun-china-style",
           "type": "light",
         },
         {
-          "hash": "fdd18987cbc66f92f9533a8ccabfd1599e2d057bc1b4b4140142eeca39be90c8",
+          "hash": "a1b293e7790592d5c91494d5f5521c71defbca65f486de1a7f6e6a3da3f77418",
           "id": "openbitfun-china-night",
           "type": "dark",
         },

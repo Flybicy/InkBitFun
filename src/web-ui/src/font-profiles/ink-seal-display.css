@@ -8,8 +8,8 @@
  * The serif detour is over: large CJK type reads as crisp rather than decorative
  * in a modern sans, and one now carries the whole product so headings and body
  * copy stay in the same voice. MiSans leads because that is the kind of face
- * the product is aiming at, and the harmony-bundled profile now actually ships
- * it: Xiaomi's official unmodified Semibold and Bold WOFF2 exports are pinned
+ * the product is aiming at, and the harmony-bundled profile ships its
+ * Regular, Semibold, and Bold WOFF2 exports. They are pinned
  * and byte-verified under src/assets/fonts/misans/, so the display face is
  * identical on Windows and Linux instead of merely requested. HarmonyOS Sans SC
  * follows on Windows and Linux, PingFang SC on macOS, and Microsoft YaHei UI on

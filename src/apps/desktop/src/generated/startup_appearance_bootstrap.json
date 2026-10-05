@@ -55,23 +55,23 @@
     },
     {
       "id": "openbitfun-china-style",
-      "bgPrimary": "#f0ede0",
-      "bgSecondary": "#faf8f0",
-      "bgScene": "#faf8f0",
+      "bgPrimary": "#F8F4ED",
+      "bgSecondary": "#FCFAF5",
+      "bgScene": "#F8F4ED",
       "isLight": true,
-      "textPrimary": "#1c1c1f",
-      "textMuted": "#6a6a6a",
-      "accentColor": "#2e5e8a"
+      "textPrimary": "#3B3D3F",
+      "textMuted": "#8E9196",
+      "accentColor": "#537D96"
     },
     {
       "id": "openbitfun-china-night",
-      "bgPrimary": "#1c1c1f",
-      "bgSecondary": "#313335",
-      "bgScene": "#262626",
+      "bgPrimary": "#26343D",
+      "bgSecondary": "#30414B",
+      "bgScene": "#26343D",
       "isLight": false,
-      "textPrimary": "#e8e8e8",
-      "textMuted": "#a1a1aa",
-      "accentColor": "#73a5cc"
+      "textPrimary": "#F0F6FA",
+      "textMuted": "#B7C8D3",
+      "accentColor": "#E6B1C4"
     },
     {
       "id": "openbitfun-cyber",

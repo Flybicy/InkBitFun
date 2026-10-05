@@ -88,13 +88,13 @@ test('Harmony source profile contains only the two approved unmodified variable 
   verifyHarmonyFontSources(HARMONY_ROOT);
 });
 
-test('MiSans ships the unmodified pinned display weights and never leaks elsewhere', () => {
+test('MiSans ships the unmodified pinned UI weights and never leaks elsewhere', () => {
   verifyMiSansFontSources(MISANS_ROOT);
 
   const stems = MISANS_FONT_ASSETS.map(
     ({ relativePath }) => relativePath.replace(/\.woff2$/, ''),
   );
-  assert.deepEqual(stems.slice().sort(), ['MiSans-Bold', 'MiSans-Semibold']);
+  assert.deepEqual(stems.slice().sort(), ['MiSans-Bold', 'MiSans-Regular', 'MiSans-Semibold']);
   for (const { relativePath, bytes, sha256 } of MISANS_FONT_ASSETS) {
     const source = readFileSync(join(MISANS_ROOT, relativePath));
     assert.equal(source.length, bytes);
@@ -120,7 +120,7 @@ test('MiSans ships the unmodified pinned display weights and never leaks elsewhe
   assert.throws(
     () => assertWebFontProfileBundle(HARMONY_BUNDLED_FONT_PROFILE, [
       ...harmonyBundle,
-      'assets/MiSans-Regular-contenthash.woff2',
+      'assets/MiSans-Medium-contenthash.woff2',
     ]),
     /unapproved font assets/,
   );
@@ -197,6 +197,7 @@ test('Apple bundles reject product text fonts but allow functional fonts', () =>
     'assets/HarmonyOS_Sans_SC_Regular-contenthash.ttf',
     'assets/FiraCode-Regular-contenthash.woff2',
     'assets/MiSans-Semibold-contenthash.woff2',
+    'assets/MiSans-Regular-contenthash.woff2',
     'assets/MiSans-Bold-contenthash.woff2',
     'fonts/noto-sans-sc-latin-wght-normal.woff2',
   ]) {

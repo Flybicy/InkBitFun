@@ -31,10 +31,10 @@ the non-Apple frontend artifact under `third-party/fonts/harmonyos-sans/`.
 - Copyright: Copyright Xiaomi Inc. (小米科技有限责任公司)
 
 Non-Apple OpenBitFun GUI distributions bundle unmodified copies of Xiaomi's
-Semibold (600) and Bold (700) WOFF2 exports so the ink/seal display face
-renders identically on Windows and Linux. The design system asks for no other
-display weight, so no additional family member is carried; macOS keeps the
-apple-system profile and therefore ships no MiSans at all. The agreement is
+Regular (400/500), Semibold (600), and Bold (700) WOFF2 exports so Simplified
+Chinese body, control, and display text renders identically on Windows and
+Linux. macOS keeps the apple-system profile and therefore ships no
+MiSans at all. The agreement is
 quoted unchanged in `third-party/fonts/misans/LICENSE.txt`, with a
 font-specific notice in `third-party/fonts/misans/NOTICE.txt`, both included
 only in the non-Apple frontend artifact.

@@ -11,41 +11,42 @@ import {
   createStandardSpacing,
   rgbFromHex,
   rgbaFromHex,
-  STATIC_BLACK,
-  STATIC_WHITE,
 } from './paletteHelpers';
 
-const CHINA_STYLE_PAPER = '#faf8f0';
-const CHINA_STYLE_CHROME = '#f0ede0';
-const CHINA_STYLE_SURFACE_INSET = '#f5f3e8';
-const CHINA_STYLE_INK = '#1c1c1f';
-const CHINA_STYLE_BUTTON_TEXT = '#3d3d3d';
-const CHINA_STYLE_BLUE = '#2e5e8a';
-const CHINA_STYLE_BLUE_HOVER = '#234a6d';
-const CHINA_STYLE_GREEN = '#7eb09b';
-const CHINA_STYLE_GREEN_HOVER = '#5a9078';
-const CHINA_STYLE_BORDER = '#6a5c46';
+const CHINA_STYLE_PAPER = '#F8F4ED';
+const CHINA_STYLE_CHROME = CHINA_STYLE_PAPER;
+const CHINA_STYLE_SURFACE_INSET = CHINA_STYLE_PAPER;
+const CHINA_STYLE_CARD = '#FCFAF5';
+const CHINA_STYLE_INK = '#3B3D3F';
+const CHINA_STYLE_TEXT_SECONDARY = '#6B6F73';
+const CHINA_STYLE_TEXT_MUTED = '#8E9196';
+const CHINA_STYLE_BLUE = '#537D96';
+const CHINA_STYLE_BLUE_HOVER = CHINA_STYLE_BLUE;
+const CHINA_STYLE_GREEN = '#EC8F8D';
+const CHINA_STYLE_GREEN_HOVER = CHINA_STYLE_GREEN;
+const CHINA_STYLE_BORDER = '#7A6058';
 
 const chinaStyleBlue = (alpha: number | string) => rgbaFromHex(CHINA_STYLE_BLUE, alpha);
 const chinaStyleBorder = (alpha: number | string) => rgbaFromHex(CHINA_STYLE_BORDER, alpha);
+const chinaStyleInk = (alpha: number | string) => rgbaFromHex(CHINA_STYLE_INK, alpha);
 
 export const openBitFunChinaStylePalette: AppearancePalette = {
 
   id: 'openbitfun-china-style',
-  name: 'Ink Charm',
+  name: 'Warm Paper',
   type: 'light',
-  description: 'Chinese style appearance - Rice paper and ink, blue and vermilion, warm and elegant',
+  description: 'Warm paper appearance - Soft ivory surfaces, muted ink text, and distant mountain blue',
   author: 'OpenBitFun Team',
-  version: '1.1.0',
+  version: '1.2.0',
 
 
   colors: {
     background: {
-      // Warm structural chrome frames the rice-paper content and white overlays.
+      // Warm paper grounds share one base; brighter cards carry elevation.
       primary: CHINA_STYLE_PAPER,
-      secondary: CHINA_STYLE_PAPER,
+      secondary: CHINA_STYLE_CARD,
       tertiary: CHINA_STYLE_SURFACE_INSET,
-      elevated: STATIC_WHITE,
+      elevated: CHINA_STYLE_CARD,
       workbench: CHINA_STYLE_SURFACE_INSET,
       scene: CHINA_STYLE_PAPER,
       chrome: CHINA_STYLE_CHROME,
@@ -53,9 +54,9 @@ export const openBitFunChinaStylePalette: AppearancePalette = {
 
     text: {
       primary: CHINA_STYLE_INK,
-      secondary: '#3d3d3d',
-      muted: '#6a6a6a',
-      disabled: '#9a9a9a',
+      secondary: CHINA_STYLE_TEXT_SECONDARY,
+      muted: CHINA_STYLE_TEXT_MUTED,
+      disabled: rgbaFromHex(CHINA_STYLE_INK, 0.35),
     },
 
     accent: createAccentScale({ base: CHINA_STYLE_BLUE, hover: CHINA_STYLE_BLUE_HOVER }),
@@ -66,17 +67,17 @@ export const openBitFunChinaStylePalette: AppearancePalette = {
 
     border: {
       subtle: chinaStyleBorder(0.12),
-      base: chinaStyleBorder(0.2),
-      medium: chinaStyleBorder(0.28),
-      strong: chinaStyleBorder(0.36),
-      prominent: chinaStyleBorder(0.48),
+      base: chinaStyleBorder(0.18),
+      medium: chinaStyleBorder(0.24),
+      strong: chinaStyleBorder(0.32),
+      prominent: chinaStyleBorder(0.42),
     },
 
     element: {
       subtle: chinaStyleBlue(0.03),
-      soft: chinaStyleBlue(0.06),
-      base: chinaStyleBlue(0.1),
-      medium: chinaStyleBlue(0.14),
+      soft: chinaStyleBlue(0.05),
+      base: chinaStyleBlue(0.08),
+      medium: chinaStyleBlue(0.12),
       strong: chinaStyleBlue(0.18),
     },
 
@@ -84,6 +85,11 @@ export const openBitFunChinaStylePalette: AppearancePalette = {
       branch: rgbFromHex(CHINA_STYLE_BLUE),
       branchBg: chinaStyleBlue(0.08),
     }),
+
+    scrollbar: {
+      thumb: chinaStyleInk(0.18),
+      thumbHover: chinaStyleInk(0.28),
+    },
   },
 
 
@@ -133,21 +139,21 @@ export const openBitFunChinaStylePalette: AppearancePalette = {
 
       primary: {
         default: {
-          background: STATIC_BLACK,
-          color: STATIC_WHITE,
+          background: CHINA_STYLE_BLUE,
+          color: CHINA_STYLE_CARD,
           border: 'transparent',
           shadow: 'none',
         },
         hover: {
-          background: '#262626',
-          color: STATIC_WHITE,
+          background: CHINA_STYLE_BLUE_HOVER,
+          color: CHINA_STYLE_CARD,
           border: 'transparent',
           shadow: 'none',
           transform: 'none',
         },
         active: {
-          background: CHINA_STYLE_INK,
-          color: STATIC_WHITE,
+          background: CHINA_STYLE_BLUE_HOVER,
+          color: CHINA_STYLE_CARD,
           border: 'transparent',
           shadow: 'none',
           transform: 'none',
@@ -157,11 +163,11 @@ export const openBitFunChinaStylePalette: AppearancePalette = {
 
       ghost: {
         default: {
-          color: '#555555',
+          color: CHINA_STYLE_TEXT_SECONDARY,
         },
         hover: {
-          background: chinaStyleBlue(0.11),
-          color: CHINA_STYLE_BUTTON_TEXT,
+          background: chinaStyleBlue(0.08),
+          color: CHINA_STYLE_BLUE_HOVER,
           border: 'transparent',
         },
       },
@@ -173,35 +179,35 @@ export const openBitFunChinaStylePalette: AppearancePalette = {
     base: 'vs',
     inherit: true,
     rules: [
-      { token: 'comment', foreground: '6a6a6a', fontStyle: 'italic' },
-      { token: 'keyword', foreground: 'c8102e' },
-      { token: 'string', foreground: '52ad5a' },
-      { token: 'number', foreground: 'f0a020' },
-      { token: 'type', foreground: '2e5e8a' },
-      { token: 'class', foreground: '2e5e8a' },
-      { token: 'function', foreground: '7eb09b' },
-      { token: 'variable', foreground: '3d3d3d' },
-      { token: 'constant', foreground: 'a0522d' },
-      { token: 'operator', foreground: 'c8102e' },
-      { token: 'tag', foreground: '2e5e8a' },
-      { token: 'attribute.name', foreground: '7eb09b' },
-      { token: 'attribute.value', foreground: '52ad5a' },
+      { token: 'comment', foreground: '8E9196', fontStyle: 'italic' },
+      { token: 'keyword', foreground: '8B3A3A' },
+      { token: 'string', foreground: '7BAE7F' },
+      { token: 'number', foreground: 'EC8F8D' },
+      { token: 'type', foreground: '537D96' },
+      { token: 'class', foreground: '537D96' },
+      { token: 'function', foreground: '456A80' },
+      { token: 'variable', foreground: '3B3D3F' },
+      { token: 'constant', foreground: '8B3A3A' },
+      { token: 'operator', foreground: '456A80' },
+      { token: 'tag', foreground: '537D96' },
+      { token: 'attribute.name', foreground: '456A80' },
+      { token: 'attribute.value', foreground: '7BAE7F' },
     ],
     colors: {
       background: CHINA_STYLE_PAPER,
       foreground: CHINA_STYLE_INK,
-      lineHighlight: '#f5f3e8',
+      lineHighlight: CHINA_STYLE_SURFACE_INSET,
       selection: chinaStyleBlue(0.28),
       cursor: CHINA_STYLE_BLUE,
 
-      'editor.selectionBackground': chinaStyleBlue(0.28),
+      'editor.selectionBackground': chinaStyleBlue(0.24),
       'editor.selectionForeground': CHINA_STYLE_INK,
       'editor.inactiveSelectionBackground': chinaStyleBlue(0.18),
-      'editor.selectionHighlightBackground': chinaStyleBlue(0.2),
-      'editor.selectionHighlightBorder': chinaStyleBlue(0.35),
+      'editor.selectionHighlightBackground': chinaStyleBlue(0.18),
+      'editor.selectionHighlightBorder': chinaStyleBlue(0.34),
       'editorCursor.foreground': CHINA_STYLE_BLUE,
-      'editor.wordHighlightBackground': chinaStyleBlue(0.12),
-      'editor.wordHighlightStrongBackground': chinaStyleBlue(0.22),
+      'editor.wordHighlightBackground': chinaStyleBlue(0.1),
+      'editor.wordHighlightStrongBackground': chinaStyleBlue(0.2),
     },
   },
 };

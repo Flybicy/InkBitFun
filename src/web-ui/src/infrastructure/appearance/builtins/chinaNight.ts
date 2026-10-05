@@ -14,32 +14,34 @@ import {
   rgbaFromHex,
 } from './paletteHelpers';
 
-const CHINA_NIGHT_CHROME = '#1c1c1f';
-const CHINA_NIGHT_BACKGROUND = '#262626';
-const CHINA_NIGHT_BACKGROUND_SECONDARY = '#313335';
-const CHINA_NIGHT_TEXT_PRIMARY = '#e8e8e8';
-const CHINA_NIGHT_BUTTON_TEXT = '#c5c3be';
-const CHINA_NIGHT_ACCENT = '#73a5cc';
-const CHINA_NIGHT_ACCENT_HOVER = '#5a8bb3';
-const CHINA_NIGHT_GREEN = '#96c6b4';
-const CHINA_NIGHT_GREEN_HOVER = '#7eb09b';
+const CHINA_NIGHT_BACKGROUND = '#26343D';
+const CHINA_NIGHT_BACKGROUND_SECONDARY = '#30414B';
+const CHINA_NIGHT_NOTE = CHINA_NIGHT_BACKGROUND_SECONDARY;
+const CHINA_NIGHT_TEXT_PRIMARY = '#F0F6FA';
+const CHINA_NIGHT_TEXT_SECONDARY = '#D3E0E8';
+const CHINA_NIGHT_TEXT_MUTED = '#B7C8D3';
+const CHINA_NIGHT_CHROME = CHINA_NIGHT_BACKGROUND;
+const CHINA_NIGHT_ACCENT = '#E6B1C4';
+const CHINA_NIGHT_ACCENT_HOVER = CHINA_NIGHT_ACCENT;
+const CHINA_NIGHT_GREEN = '#B9E2FF';
+const CHINA_NIGHT_GREEN_HOVER = CHINA_NIGHT_GREEN;
 
-const chinaNightText = (alpha: number | string) => rgbaFromHex(CHINA_NIGHT_TEXT_PRIMARY, alpha);
 const chinaNightAccent = (alpha: number | string) => rgbaFromHex(CHINA_NIGHT_ACCENT, alpha);
+const chinaNightLink = (alpha: number | string) => rgbaFromHex(CHINA_NIGHT_GREEN, alpha);
 
 export const openBitFunChinaNightPalette: AppearancePalette = {
 
   id: 'openbitfun-china-night',
-  name: 'Ink Night',
+  name: 'Aoi Night Contrast',
   type: 'dark',
-  description: 'Chinese dark appearance - Starlit ink night, moonlight like water, serene and elegant',
+  description: 'Aoi night high-contrast appearance - Deep teal night, bright rose accents, and clear blue links',
   author: 'OpenBitFun Team',
-  version: '1.1.0',
+  version: '1.2.0',
 
 
   colors: {
     background: {
-      // Ink chrome, charcoal content, and lifted panels share a neutral ramp.
+      // A deep teal base pairs with brighter card surfaces.
       primary: CHINA_NIGHT_BACKGROUND,
       secondary: CHINA_NIGHT_BACKGROUND_SECONDARY,
       tertiary: CHINA_NIGHT_CHROME,
@@ -51,9 +53,9 @@ export const openBitFunChinaNightPalette: AppearancePalette = {
 
     text: {
       primary: CHINA_NIGHT_TEXT_PRIMARY,
-      secondary: '#c5c3be',
-      muted: '#a1a1aa',
-      disabled: '#555555',
+      secondary: CHINA_NIGHT_TEXT_SECONDARY,
+      muted: CHINA_NIGHT_TEXT_MUTED,
+      disabled: rgbaFromHex(CHINA_NIGHT_TEXT_PRIMARY, 0.38),
     },
 
     accent: createAccentScale({ base: CHINA_NIGHT_ACCENT, hover: CHINA_NIGHT_ACCENT_HOVER }),
@@ -63,25 +65,30 @@ export const openBitFunChinaNightPalette: AppearancePalette = {
     semantic: createSemanticColors('dark'),
 
     border: {
-      subtle: chinaNightText(0.14),
-      base: chinaNightText(0.2),
-      medium: chinaNightText(0.26),
-      strong: chinaNightText(0.32),
-      prominent: chinaNightText(0.42),
+      subtle: chinaNightAccent(0.16),
+      base: chinaNightAccent(0.26),
+      medium: chinaNightAccent(0.34),
+      strong: chinaNightAccent(0.42),
+      prominent: chinaNightAccent(0.52),
     },
 
     element: {
-      subtle: chinaNightText(0.04),
-      soft: chinaNightText(0.07),
-      base: chinaNightText(0.1),
-      medium: chinaNightText(0.15),
-      strong: chinaNightText(0.2),
+      subtle: chinaNightAccent(0.04),
+      soft: chinaNightAccent(0.08),
+      base: chinaNightAccent(0.12),
+      medium: chinaNightAccent(0.18),
+      strong: chinaNightAccent(0.26),
     },
 
     git: createGitColors('dark', {
-      branch: rgbFromHex(CHINA_NIGHT_ACCENT),
-      branchBg: chinaNightAccent(0.12),
+      branch: rgbFromHex(CHINA_NIGHT_GREEN),
+      branchBg: chinaNightLink(0.12),
     }),
+
+    scrollbar: {
+      thumb: chinaNightLink(0.2),
+      thumbHover: chinaNightLink(0.32),
+    },
   },
 
 
@@ -105,8 +112,8 @@ export const openBitFunChinaNightPalette: AppearancePalette = {
 
     opacity: {
       disabled: 0.45,
-      hover: 0.75,
-      focus: 0.9,
+      hover: 0.78,
+      focus: 0.92,
     },
   },
 
@@ -131,21 +138,21 @@ export const openBitFunChinaNightPalette: AppearancePalette = {
 
       primary: {
         default: {
-          background: chinaNightAccent(0.24),
-          color: '#88b8d8',
+          background: CHINA_NIGHT_ACCENT,
+          color: CHINA_NIGHT_CHROME,
           border: 'transparent',
           shadow: 'none',
         },
         hover: {
-          background: chinaNightAccent(0.34),
-          color: '#b0d5ea',
+          background: CHINA_NIGHT_ACCENT_HOVER,
+          color: CHINA_NIGHT_CHROME,
           border: 'transparent',
           shadow: 'none',
           transform: 'none',
         },
         active: {
-          background: chinaNightAccent(0.28),
-          color: '#b0d5ea',
+          background: CHINA_NIGHT_ACCENT_HOVER,
+          color: CHINA_NIGHT_CHROME,
           border: 'transparent',
           shadow: 'none',
           transform: 'none',
@@ -155,11 +162,11 @@ export const openBitFunChinaNightPalette: AppearancePalette = {
 
       ghost: {
         default: {
-          color: '#9a9a9a',
+          color: CHINA_NIGHT_TEXT_MUTED,
         },
         hover: {
-          background: chinaNightAccent(0.13),
-          color: CHINA_NIGHT_BUTTON_TEXT,
+          background: chinaNightAccent(0.14),
+          color: CHINA_NIGHT_TEXT_PRIMARY,
           border: 'transparent',
         },
       },
@@ -171,28 +178,34 @@ export const openBitFunChinaNightPalette: AppearancePalette = {
     base: 'vs-dark',
     inherit: true,
     rules: [
-      { token: 'comment', foreground: '928f89', fontStyle: 'italic' },
-      { token: 'keyword', foreground: 'e85555' },
-      { token: 'string', foreground: '6bc072' },
-      { token: 'number', foreground: 'f5b555' },
-      { token: 'type', foreground: '73a5cc' },
-      { token: 'class', foreground: '73a5cc' },
-      { token: 'function', foreground: '96c6b4' },
-      { token: 'variable', foreground: 'c5c3be' },
-      { token: 'constant', foreground: 'd4a574' },
-      { token: 'operator', foreground: 'e85555' },
-      { token: 'tag', foreground: '73a5cc' },
-      { token: 'attribute.name', foreground: '96c6b4' },
-      { token: 'attribute.value', foreground: '6bc072' },
+      { token: 'comment', foreground: 'B7C8D3', fontStyle: 'italic' },
+      { token: 'keyword', foreground: 'E28B8B' },
+      { token: 'string', foreground: 'A8DDAA' },
+      { token: 'number', foreground: 'F1BEAD' },
+      { token: 'type', foreground: 'B9E2FF' },
+      { token: 'class', foreground: 'B9E2FF' },
+      { token: 'function', foreground: 'E6B1C4' },
+      { token: 'variable', foreground: 'D3E0E8' },
+      { token: 'constant', foreground: 'F1BEAD' },
+      { token: 'operator', foreground: 'E28B8B' },
+      { token: 'tag', foreground: 'B9E2FF' },
+      { token: 'attribute.name', foreground: 'E6B1C4' },
+      { token: 'attribute.value', foreground: 'A8DDAA' },
     ],
     colors: {
       background: CHINA_NIGHT_BACKGROUND,
       foreground: CHINA_NIGHT_TEXT_PRIMARY,
-      lineHighlight: CHINA_NIGHT_BACKGROUND_SECONDARY,
+      lineHighlight: CHINA_NIGHT_NOTE,
       selection: chinaNightAccent(0.25),
       cursor: CHINA_NIGHT_ACCENT,
       'editor.selectionBackground': chinaNightAccent(0.25),
       'editorCursor.foreground': CHINA_NIGHT_ACCENT,
+      'editor.selectionForeground': CHINA_NIGHT_TEXT_PRIMARY,
+      'editor.inactiveSelectionBackground': chinaNightAccent(0.18),
+      'editor.selectionHighlightBackground': chinaNightAccent(0.2),
+      'editor.selectionHighlightBorder': chinaNightAccent(0.34),
+      'editor.wordHighlightBackground': chinaNightLink(0.12),
+      'editor.wordHighlightStrongBackground': chinaNightLink(0.2),
     },
   },
 };
