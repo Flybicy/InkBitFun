@@ -125,6 +125,17 @@ test('MiSans ships the unmodified pinned UI weights and never leaks elsewhere', 
     /unapproved font assets/,
   );
 });
+test('Harmony profile defaults body and control stacks to MiSans', () => {
+  const stylesheet = readFileSync(join(
+    ROOT, 'src/web-ui/src/font-profiles/harmony-bundled.css',
+  ), 'utf8');
+  const expectedStack = '"MiSans", "OpenBitFun HarmonyOS Sans SC", "OpenBitFun HarmonyOS Sans", system-ui, "Microsoft YaHei UI", sans-serif';
+
+  assert.ok(stylesheet.includes(`--openbitfun-font-family-sans: ${expectedStack};`));
+  assert.ok(stylesheet.includes(`--openbitfun-font-family-control: ${expectedStack};`));
+  assert.doesNotMatch(stylesheet, /:lang\(zh-CN\)[^@]*--openbitfun-font-family-sans/is);
+});
+
 test('bundled font variation axes and CSS cover every design-system weight', () => {
   const system = JSON.parse(readFileSync(join(
     ROOT, 'design-system/packages/design-tokens/src/system.tokens.json',

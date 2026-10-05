@@ -44,8 +44,8 @@
 }
 
 /*
- * MiSans, Xiaomi's HyperOS face, carries the Simplified Chinese body,
- * control, and display roles on every non-Apple build.
+ * MiSans, Xiaomi's HyperOS face, carries the product body, control, and
+ * display roles on every non-Apple build.
  * same everywhere instead of falling back to whichever sans the platform picks.
  * Regular covers body and control weights; Semibold and Bold preserve the
  * display tokens. The three unmodified official WOFF2 exports total about
@@ -116,14 +116,9 @@
 @layer openbitfun.tokens.system {
   /* This profile loads before package CSS; outrank its zero-specificity defaults. */
   [data-openbitfun-design-system-root] {
-    --openbitfun-font-family-sans: "OpenBitFun HarmonyOS Sans", system-ui, "Segoe UI", Arial, sans-serif;
-    --openbitfun-font-family-control: "OpenBitFun HarmonyOS Sans", system-ui, "Segoe UI", Arial, sans-serif;
-    /* The design system owns the code stack and its localized body fallback. */
-  }
-
-  :where([data-openbitfun-design-system-root]):lang(zh-CN) {
     --openbitfun-font-family-sans: "MiSans", "OpenBitFun HarmonyOS Sans SC", "OpenBitFun HarmonyOS Sans", system-ui, "Microsoft YaHei UI", sans-serif;
     --openbitfun-font-family-control: "MiSans", "OpenBitFun HarmonyOS Sans SC", "OpenBitFun HarmonyOS Sans", system-ui, "Microsoft YaHei UI", sans-serif;
+    /* The design system owns the code stack and its localized body fallback. */
   }
 
   /* Traditional Chinese deliberately follows the platform's localized face. */
